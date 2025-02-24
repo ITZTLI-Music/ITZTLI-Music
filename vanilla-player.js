@@ -897,16 +897,20 @@ it was success or defeat and the lessons from each.`
 			justify-content: space-between;
 		  }
 		  
+		  /* Fixed-size player */
 		  .vanilla-player {
 			width: 500px;
-			min-width: 500px; /* Fixed width */
+			min-width: 500px;
 			max-width: 500px;
+			height: 800px; /* Fixed height to accommodate all songs */
+			display: flex;
+			flex-direction: column;
 			background-color: rgba(0, 0, 0, 0.7);
 			border: 1px solid #fff;
 			border-radius: 8px;
 			overflow: hidden;
 			transition: transform 0.5s ease;
-			flex-shrink: 0; /* Prevent shrinking */
+			flex-shrink: 0;
 		  }
 		  
 		  .player-album-art {
@@ -914,6 +918,7 @@ it was success or defeat and the lessons from each.`
 			height: 0;
 			padding-bottom: 100%;
 			position: relative;
+			flex-shrink: 0;
 		  }
 		  
 		  .player-album-art img {
@@ -928,6 +933,7 @@ it was success or defeat and the lessons from each.`
 		  .player-controls {
 			padding: 20px;
 			border-top: 1px solid #333;
+			flex-shrink: 0;
 		  }
 		  
 		  .song-info {
@@ -991,10 +997,11 @@ it was success or defeat and the lessons from each.`
 			background-color: #2ebd35 !important;
 		  }
 		  
+		  /* Song list that fits all songs without scrolling */
 		  .song-list {
+			flex: 1;
 			border-top: 1px solid #333;
 			padding: 20px;
-			max-height: 400px;
 			overflow-y: auto;
 		  }
 		  
@@ -1009,18 +1016,6 @@ it was success or defeat and the lessons from each.`
 			list-style: none;
 			padding: 0;
 			margin: 0;
-		  }
-		  
-		  .song-list ul::-webkit-scrollbar {
-			width: 5px;
-		  }
-		  
-		  .song-list ul::-webkit-scrollbar-track {
-			background: #333;
-		  }
-		  
-		  .song-list ul::-webkit-scrollbar-thumb {
-			background: #2ebd35;
 		  }
 		  
 		  .song-list li {
@@ -1046,33 +1041,35 @@ it was success or defeat and the lessons from each.`
 			color: #999;
 		  }
 		  
-		  /* Lyrics Container */
+		  /* Fixed-height lyrics container */
 		  .lyrics-container {
 			width: 500px;
-			min-width: 500px; /* Fixed width */
+			min-width: 500px;
 			max-width: 500px;
+			height: 800px; /* Match player height exactly */
 			background-color: rgba(0, 0, 0, 0.7);
 			border: 1px solid #fff;
 			border-radius: 8px;
 			overflow: hidden;
-			height: 0;
 			opacity: 0;
 			transform: translateX(-30px);
-			transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
-			flex-shrink: 0; /* Prevent shrinking */
+			transition: opacity 0.5s ease, transform 0.5s ease;
+			flex-shrink: 0;
+			display: none; /* Start hidden */
 		  }
 		  
 		  .lyrics-container.visible {
-			height: auto;
 			opacity: 1;
 			transform: translateX(0);
+			display: block; /* Show when visible */
 		  }
 		  
 		  .lyrics-content {
 			padding: 20px;
 			color: #fff;
-			max-height: none; /* No height limit */
-			overflow-y: visible;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
 		  }
 		  
 		  .lyrics-content h3 {
@@ -1081,14 +1078,28 @@ it was success or defeat and the lessons from each.`
 			margin-bottom: 15px;
 			color: #2ebd35;
 			font-size: 18px;
+			flex-shrink: 0;
 		  }
 		  
 		  .lyrics-text {
+			flex: 1;
+			overflow-y: auto;
 			white-space: pre-line;
 			line-height: 1.6;
 			padding-right: 10px;
-			padding-bottom: 20px; /* Add bottom padding */
 			font-size: 15px;
+		  }
+		  
+		  .lyrics-text::-webkit-scrollbar {
+			width: 5px;
+		  }
+		  
+		  .lyrics-text::-webkit-scrollbar-track {
+			background: #333;
+		  }
+		  
+		  .lyrics-text::-webkit-scrollbar-thumb {
+			background: #2ebd35;
 		  }
 		  
 		  /* Animation for player shift */
@@ -1096,7 +1107,7 @@ it was success or defeat and the lessons from each.`
 			transform: translateX(-15px);
 		  }
 		  
-		  /* Responsive Adjustments */
+		  /* Responsive adjustments */
 		  @media (max-width: 1050px) {
 			.player-container {
 			  flex-direction: column;
@@ -1120,6 +1131,7 @@ it was success or defeat and the lessons from each.`
 			.lyrics-container.visible {
 			  margin-top: 30px;
 			  transform: translateX(0);
+			  display: block;
 			}
 		  }
 		`;
