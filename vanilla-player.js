@@ -884,17 +884,17 @@ it was success or defeat and the lessons from each.`
 		  }
 		  
 		  .player-container {
-			width: 100%;
-			max-width: 1000px;
-			margin: 0 auto;
-			display: flex;
-			justify-content: center;
-			gap: 30px;
-			transition: all 0.5s ease;
+		    width: 100%;
+		    max-width: 1200px; /* Increased to give more room */
+		    margin: 0 auto;
+		    display: flex;
+		    justify-content: center;
+		    gap: 30px;
+		    transition: all 0.5s ease;
 		  }
-		  
+
 		  .player-container.show-lyrics {
-			justify-content: space-between;
+		    justify-content: center; /* Center both elements */
 		  }
 		  
 		  /* Fixed-size player */
