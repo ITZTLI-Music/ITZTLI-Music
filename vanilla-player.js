@@ -885,16 +885,16 @@ it was success or defeat and the lessons from each.`
 		  
 		  /* Player container needs to allow vertical alignment */
 		  .player-container {
-		    width: 100%;
-		    max-width: 1200px;
-		    margin: 0 auto;
-		    display: flex;
-		    justify-content: center;
-		    gap: 30px;
-		    transition: all 0.5s ease;
-		    align-items: flex-start; /* Allow different vertical positioning */
+		   width: 100%;
+		   max-width: 1200px;
+		   margin: 0 auto;
+		   display: flex;
+		   justify-content: center;
+		   gap: 30px;
+		   transition: all 0.5s ease;
+		   align-items: center; /* Center items vertically */
 		  }
-		  .player-container.show-lyrics {
+				  .player-container.show-lyrics {
 		    justify-content: center; /* Center both elements */
 		  }
 		  
@@ -1049,36 +1049,35 @@ it was success or defeat and the lessons from each.`
 		  
 		  /* Adjust lyrics container to align with song list */
 		  .lyrics-container {
-		    width: 500px;
-		    min-width: 500px;
-		    max-width: 500px;
-		    height: auto;
-		    max-height: 750px; /* Match player height */
-		    background-color: rgba(0, 0, 0, 0.7);
-		    border: 1px solid #fff;
-		    border-radius: 8px;
-		    overflow: hidden;
-		    opacity: 0;
-		    transform: translateX(-30px);
-		    transition: opacity 0.5s ease, transform 0.5s ease;
-		    flex-shrink: 0;
-		    display: none; /* Start hidden */
-		    align-self: flex-start; /* Align to top of container */
-		    margin-top: 250px; /* Adjust to align with song list - tweak as needed */
+			width: 500px;
+			min-width: 500px;
+			max-width: 500px;
+			background-color: rgba(0, 0, 0, 0.7);
+			border: 1px solid #fff;
+			border-radius: 8px;
+			overflow: hidden;
+			opacity: 0;
+			transform: translateX(-30px);
+			transition: opacity 0.5s ease, transform 0.5s ease;
+			flex-shrink: 0;
+			display: none; /* Start hidden */
+			margin-top: 0; /* Remove previous top margin */
+			align-self: flex-start;
 		  }
 		  
 		  .lyrics-container.visible {
 			opacity: 1;
 			transform: translateX(0);
-			display: block; /* Show when visible */
+			display: block;
 		  }
 		  
 		  .lyrics-content {
 			padding: 20px;
 			color: #fff;
-			height: 100%;
+			height: 350px; /* Match song list height */
 			display: flex;
 			flex-direction: column;
+			overflow-y: auto; /* Add scrollbar if lyrics are long */
 		  }
 		  
 		  .lyrics-content h3 {
