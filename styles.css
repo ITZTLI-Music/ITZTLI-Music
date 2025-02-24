@@ -110,106 +110,111 @@ nav ul li a:hover {
   animation-fill-mode: both;
 }
 
-/* Music Section */
+/* Music Section Layout */
 #music {
   padding: 100px 20px;
   background: rgba(0, 0, 0, 0.8);
+  min-height: 600px;
 }
 
-#bandcamp-player {
-  margin: 40px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+.music-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.player-container {
+  flex: 0 0 400px;
+}
+
+.lyrics-container {
+  flex: 0 0 300px;
+  text-align: left;
+}
+
+/* Lyrics Buttons Styling */
+.lyrics-btn {
+  background: rgba(46, 189, 53, 0.2);
+  border: 1px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 12px 20px;
+  margin: 5px 0;
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
   transition: var(--transition);
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
-/* Enhanced Contact Form */
-#contact {
+.lyrics-btn.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.lyrics-btn:hover {
+  background: rgba(46, 189, 53, 0.4);
+}
+
+.lyrics-btn.active {
+  background: var(--primary-color);
+}
+
+/* Lyrics Display */
+#lyrics-display {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#lyrics-display.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#lyrics-display h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+}
+
+/* Merch Section */
+#merch {
   padding: 100px 20px;
   background: rgba(0, 0, 0, 0.7);
 }
 
-form {
+.merch-placeholder {
   max-width: 600px;
   margin: 40px auto;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 15px;
-  margin: 10px 0;
+  padding: 40px;
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--text-color);
-  border-radius: 5px;
-  transition: var(--transition);
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-button {
-  background: var(--primary-color);
-  color: var(--text-color);
-  padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1em;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-button:hover {
-  background: #249a2b;
-  transform: translateY(-2px);
-}
-
-/* Enhanced Footer */
-footer {
-  padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.9);
-}
-
-footer a {
-  color: var(--text-color);
-  text-decoration: none;
-  margin: 0 15px;
-  transition: var(--transition);
-}
-
-footer a:hover {
-  color: var(--primary-color);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 3em;
-    letter-spacing: 5px;
-  }
-  
-  nav ul {
+/* Responsive Design Updates */
+@media (max-width: 968px) {
+  .music-container {
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
   }
   
-  nav {
-    padding: 15px;
+  .lyrics-container {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .lyrics-btn {
+    opacity: 1;
+    transform: none;
   }
 }

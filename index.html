@@ -33,29 +33,47 @@
         <p>ADELANTE</p>
     </header>
 
-<!-- Music Section (Bandcamp Embed) -->
 <section id="music">
     <h2>Listen Now</h2>
-    
-    <!-- Bandcamp Embed -->
-    <iframe id="bandcamp-player" style="border: 0; width: 400px; height: 472px;"
-            src="https://bandcamp.com/EmbeddedPlayer/album=1029371013/size=large/bgcol=333333/linkcol=2ebd35/artwork=small/transparent=true/"
-            seamless></iframe>
-
-    <!-- Lyrics Buttons (Initially Hidden) -->
-    <div id="lyrics-buttons">
-        <button class="lyrics-btn" data-song="song1">Lyrics for Song 1</button>
-        <button class="lyrics-btn" data-song="song2">Lyrics for Song 2</button>
-        <button class="lyrics-btn" data-song="song3">Lyrics for Song 3</button>
-    </div>
-
-    <!-- Lyrics Display (Initially Hidden) -->
-    <div id="lyrics-display" class="hidden">
-        <h3>Lyrics</h3>
-        <p id="lyrics-content"></p>
-        <button onclick="closeLyrics()">Close</button>
+    <div class="music-container">
+        <div class="lyrics-container">
+            <div id="lyrics-buttons">
+                <button class="lyrics-btn" data-song="song1">Song 1 Lyrics</button>
+                <button class="lyrics-btn" data-song="song2">Song 2 Lyrics</button>
+                <button class="lyrics-btn" data-song="song3">Song 3 Lyrics</button>
+            </div>
+            <div id="lyrics-display" class="hidden">
+                <h3 id="lyrics-title"></h3>
+                <p id="lyrics-content"></p>
+                <button onclick="closeLyrics()" class="close-btn">Close</button>
+            </div>
+        </div>
+        <div class="player-container">
+            <iframe id="bandcamp-player" style="border: 0; width: 400px; height: 472px;"
+                    src="https://bandcamp.com/EmbeddedPlayer/album=1029371013/size=large/bgcol=333333/linkcol=2ebd35/artwork=small/transparent=true/"
+                    seamless></iframe>
+        </div>
     </div>
 </section>
+
+<!-- Add new Merch Section -->
+<section id="merch">
+    <h2>Merch</h2>
+    <div class="merch-placeholder">
+        <h3>Coming Soon</h3>
+        <p>Exclusive merchandise will be available here shortly. Stay tuned!</p>
+    </div>
+</section>
+
+<!-- Update Navigation -->
+<nav>
+    <ul>
+        <li><a href="#music">Music</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#merch">Merch</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
 
     <!-- Contact Section -->
