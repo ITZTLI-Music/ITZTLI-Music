@@ -1,36 +1,36 @@
 // Simplified vanilla player with scope fix
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Vanilla player script loaded');
-  
-  const audioPlayerRoot = document.getElementById('audio-player-root');
-  console.log('Audio player root found:', audioPlayerRoot);
-  
-  if (!audioPlayerRoot) {
-    console.error('Audio player root element not found!');
-    return;
-  }
-  
-  // Clear any existing content
-  audioPlayerRoot.innerHTML = '';
-  console.log('Cleared audio player root content');
-  
-  try {
-    // Create player container - moved inside the try block to fix scope issue
-    const playerContainer = document.createElement('div');
-    playerContainer.className = 'player-container';
-    audioPlayerRoot.appendChild(playerContainer);
-    console.log('Created player container');
+    console.log('Vanilla player script loaded');
+    
+    const audioPlayerRoot = document.getElementById('audio-player-root');
+    console.log('Audio player root found:', audioPlayerRoot);
+    
+    if (!audioPlayerRoot) {
+        console.error('Audio player root element not found!');
+        return;
+    }
+    
+    // Clear any existing content
+    audioPlayerRoot.innerHTML = '';
+    console.log('Cleared audio player root content');
+    
+    try {
+        // Create player container - moved inside the try block to fix scope issue
+        const playerContainer = document.createElement('div');
+        playerContainer.className = 'player-container';
+        audioPlayerRoot.appendChild(playerContainer);
+        console.log('Created player container');
 	
 	// Album data with lyrics
-  const albumData = {
-    title: "ADELANTE",
-    artwork: "./assets/images/album-art.png",
-    songs: [
-      { 
-        title: "DEUS EX MACHINA", 
-        src: "./assets/audio/DEUS EX MACHINA.mp3", 
-        duration: "2:07",
-        lyrics: `Machine spoke the bars but i wrote em from the heart,
+    const albumData = {
+        title: "ADELANTE",
+        artwork: "./assets/images/album-art.png",
+        songs: [
+            { 
+                title: "DEUS EX MACHINA", 
+                src: "./assets/audio/DEUS EX MACHINA.mp3", 
+                duration: "2:07",
+                lyrics: `Machine spoke the bars but i wrote em from the heart,
 the spirits in the lyrics cuz got no time for the art,
 im a ghost in the dark,
 performance just the means for the mission,
@@ -74,12 +74,12 @@ flow straight from the madness, homonculous in flask,
 combust aint the half, im strollin the path,
 break down the math, never static, seldom lax,
 on blast with the graphic, no strap.`
-      },
-      { 
-        title: "ADDRESSING MY INTENTIONS", 
-        src: "./assets/audio/ADDRESSING MY INTENTIONS.mp3", 
-        duration: "2:08",
-        lyrics: `Go ahead, take what i said outta context,
+            },
+            { 
+                title: "ADDRESSING MY INTENTIONS", 
+                src: "./assets/audio/ADDRESSING MY INTENTIONS.mp3", 
+                duration: "2:08",
+                lyrics: `Go ahead, take what i said outta context,
 it's been ostensibly processed, i wont cater to nonsense,
 all it means is they aint hearing the content,
 I aint vexed, handle it properly,
@@ -118,12 +118,12 @@ its greater than nations,
 it's in each and every sectors operations,
 thats why i made this, so we can escape this,
 containment from these ancient outdated behaviors.`
-      },
-      { 
-        title: "ROAM FOREVER", 
-        src: "./assets/audio/ROAM FOREVER.mp3", 
-        duration: "1:55",
-        lyrics: `Looseleaf sketch or a rest on the desk,
+            },
+            { 
+                title: "ROAM FOREVER", 
+                src: "./assets/audio/ROAM FOREVER.mp3", 
+                duration: "1:55",
+                lyrics: `Looseleaf sketch or a rest on the desk,
 big stretch, not pressed to impress,
 never do his best, unless interest expressed,
 whatd you expect from the kid,
@@ -163,13 +163,13 @@ Roam forever, no home to tether, dont carry weight,
 Hopes unfettered, just hold together, keep staring straight,
 Nothings measured, just float the weather, surrender fate,
 Entropy tempered, no buried treasure for me in wait.`
-      },
-      // Add lyrics for your other songs here with the same format
-      { 
-        title: "MORAL PHILOSOPHY", 
-        src: "./assets/audio/MORAL PHILOSOPHY.mp3", 
-        duration: "3:26",
-        lyrics: `More pacifist than pugilist,
+            },
+            // Add lyrics for your other songs here with the same format
+            { 
+                title: "MORAL PHILOSOPHY", 
+                src: "./assets/audio/MORAL PHILOSOPHY.mp3", 
+                duration: "3:26",
+                lyrics: `More pacifist than pugilist,
 but not opposed to use a fist for righteousness,
 if one insists on violence, and it comes to it, wont, silence the blind,
 I'd rather supply them with light or combine and unite to refine what we find to be right,
@@ -231,12 +231,12 @@ we need honest intentions for solutions of merit,
 the present lack is apparent, with cynicism thats blaring,
 the ignorance is inherent, no methods given to repair it, so...
 no methods given to repair it, so...`
-      },
-      { 
-        title: "I COULD USE A THING OR TWO", 
-        src: "./assets/audio/I COULD USE A THING OR TWO.mp3", 
-        duration: "2:15",
-        lyrics: `I could use some bliss, so pass that ignorance,
+            },
+            { 
+                title: "I COULD USE A THING OR TWO", 
+                src: "./assets/audio/I COULD USE A THING OR TWO.mp3", 
+                duration: "2:15",
+                lyrics: `I could use some bliss, so pass that ignorance,
 I take a couple hits and lift until my plight does not exist,
 I wish it could persist, forever on, to drift into that golden dawn,
 and raise my hands to praise the sun,
@@ -287,12 +287,12 @@ but woe is me, eventually they'll bury me, (they'll bury me)
 
 Yeah, I could use, I could use, I could use those things.
 Yeah I could use, I could use, I could use those things...`
-      },
-      { 
-        title: "ALL GAS NO BRAKES", 
-        src: "./assets/audio/ALL GAS NO BRAKES.mp3", 
-        duration: "2:21",
-        lyrics: `Enter mania: consumed by delusions of grandeur,
+            },
+            { 
+                title: "ALL GAS NO BRAKES", 
+                src: "./assets/audio/ALL GAS NO BRAKES.mp3", 
+                duration: "2:21",
+                lyrics: `Enter mania: consumed by delusions of grandeur,
 loose cannon action reactor,
 load, lift, and bring down that hammer,
 dysfunction capture the manor,
@@ -339,12 +339,12 @@ load, lift, and bring down that hammer,
 dysfunction capture the manor,
 no matter of fact can combat the disaster,
 no manner of tact in the way that he acting hereafter,`
-      },
-      { 
-        title: "POLYPHASIC SLEEPING", 
-        src: "./assets/audio/POLYPHASIC SLEEPING.mp3", 
-        duration: "3:22",
-        lyrics: `Start the day by saturating veins with neuromancers haste,
+            },
+            { 
+                title: "POLYPHASIC SLEEPING", 
+                src: "./assets/audio/POLYPHASIC SLEEPING.mp3", 
+                duration: "3:22",
+                lyrics: `Start the day by saturating veins with neuromancers haste,
 it helps dispell the haze through change of mental state,
 lay the lame to waste and break apart the slate of banal simulation,
 real or imitation, break the limitations,
@@ -404,12 +404,12 @@ I got ten thousand burning questions that i dont know how to ask,
 theres infinite dimensions to how i could do this task,
 i could go with whats expected but it dont feel all that pleasant,
 i would rather be inventing, but i dont know how to ask.`
-      },
-      { 
-        title: "RIVALROUS TACTICS", 
-        src: "./assets/audio/RIVALROUS TACTICS.mp3", 
-        duration: "2:11",
-        lyrics: `We supersede the game that nature made for our survival,
+            },
+            { 
+                title: "RIVALROUS TACTICS", 
+                src: "./assets/audio/RIVALROUS TACTICS.mp3", 
+                duration: "2:11",
+                lyrics: `We supersede the game that nature made for our survival,
 I aim to break the cycle of the cyclone that is the bastard child,
 found more divine insight defined by rhymes and their disciples,
 than the rifled lines from bibles during crisis,
@@ -439,12 +439,12 @@ aint no cope you can grasp thats strong enough to last through these dark days,
 we part ways with sunrays, never unphased, never unscathed, but we hold strength
 
 Yeah we hold strength.`
-      },
-      { 
-        title: "CHORIZO CON PAPAS", 
-        src: "./assets/audio/CHORIZO CON PAPAS.mp3", 
-        duration: "2:10",
-        lyrics: `Wake up to a lick from choriz,
+            },
+            { 
+                title: "CHORIZO CON PAPAS", 
+                src: "./assets/audio/CHORIZO CON PAPAS.mp3", 
+                duration: "2:10",
+                lyrics: `Wake up to a lick from choriz,
 no suprise, eyes are wide, starin' dead at me,
 like ready? go? As above and so below,
 Po is mooin' at my toes,
@@ -493,12 +493,12 @@ Side by side we stridin' by explore the furthest reaches,
 we each eachothers teachers, bequeeth the love forever free and equally be seekin',
 infinite beeseechin', never prone to treason,
 praise em with a treat and pray they never leave us weepin'`
-      },
-      { 
-        title: "COLLECTIVE COGNIZANCE", 
-        src: "./assets/audio/COLLECTIVE COGNIZANCE.mp3", 
-        duration: "3:58",
-        lyrics: `i be that vigil, vigilante,
+            },
+            { 
+                title: "COLLECTIVE COGNIZANCE", 
+                src: "./assets/audio/COLLECTIVE COGNIZANCE.mp3", 
+                duration: "3:58",
+                lyrics: `i be that vigil, vigilante,
 live in iridescent shanty chanting murals of philanthropy,
 pleasant though a fantasy, sick of sycophantic pageantry,
 like sincerely, fuck your majesty, and its maddening casualties,
@@ -559,12 +559,12 @@ im tryna bargain appeal,
 so we can solve the ordeal,
 with riddled qualms and open palms,i hope you know how i feel,
 i write my wrongs and speak in songs to override all these blighted alleles.`
-      },
-      { 
-        title: "ROGUE MAGICIAN", 
-        src: "./assets/audio/ROGUE MAGICIAN.mp3", 
-        duration: "3:39", 
-        lyrics: `Take one small dose of this dope that i did,
+            },
+            { 
+                title: "ROGUE MAGICIAN", 
+                src: "./assets/audio/ROGUE MAGICIAN.mp3", 
+                duration: "3:39", 
+                lyrics: `Take one small dose of this dope that i did,
 Comatose when it hits, overdose on the shit,
 Slow-mo for the folks still soakin it in,
 too close to the sun and youll float down the styx,
@@ -670,12 +670,12 @@ and still i persisted, yet what did that net?
 Im falling apart, inthralled by the dark,
 and still i wont kill but till death do i part
 (x2)`
-      },
-      { 
-        title: "FOREVER & ALWAYS", 
-        src: "./assets/audio/FOREVER & ALWAYS.mp3", 
-        duration: "3:52",
-        lyrics: `I love you, more than words can say,
+            },
+            { 
+                title: "FOREVER & ALWAYS", 
+                src: "./assets/audio/FOREVER & ALWAYS.mp3", 
+                duration: "3:52",
+                lyrics: `I love you, more than words can say,
 You consume my thoughts every second away,
 How you console my heart when I make a mistake,
 You embolden my art with the blessings you gave,
@@ -732,12 +732,12 @@ When I fell to the dark and you helped me escape,
 The light guiding the path to brighten the way,
 Do whatever you can to make it okay,
 A love so grand that forever well stay.`
-      },
-      { 
-        title: "SEDITION OF THE ZEITGEIST", 
-        src: "./assets/audio/SEDITION OF THE ZEITGEIST.mp3", 
-        duration: "5:16",
-        lyrics: `This is sedition of the zeitgeist,
+            },
+            { 
+                title: "SEDITION OF THE ZEITGEIST", 
+                src: "./assets/audio/SEDITION OF THE ZEITGEIST.mp3", 
+                duration: "5:16",
+                lyrics: `This is sedition of the zeitgeist,
 tradition never quite right,
 iced to the eyesight,
 got blinded by the limelight,
@@ -821,466 +821,499 @@ Pledge allegiance to no land,
 every man has potential for evil,
 man wasnt built by reason,
 it was success or defeat and the lessons from each.`
-      }
-    ]
-  };
-    
+            }
+        ]
+    };
+        
 	// Create player HTML
 	const playerHTML = `
-	  <div class="vanilla-player">
+	    <div class="vanilla-player">
 		<div class="player-album-art">
-		  <img src="${albumData.artwork}" alt="${albumData.title}" onerror="this.src='https://via.placeholder.com/400'">
+		    <img src="${albumData.artwork}" alt="${albumData.title}" onerror="this.src='https://via.placeholder.com/400'">
 		</div>
 		<div class="player-controls">
-		  <div class="song-info">
+		    <div class="song-info">
 			<h3 class="current-song-title">${albumData.songs[0].title}</h3>
 			<div class="time-display">
-			  <span class="current-time">0:00</span> / 
-			  <span class="duration">${albumData.songs[0].duration}</span>
+			    <span class="current-time">0:00</span> / 
+			    <span class="duration">${albumData.songs[0].duration}</span>
 			</div>
-		  </div>
-		  <div class="progress-bar">
+		    </div>
+		    <div class="progress-bar">
 			<div class="progress"></div>
-		  </div>
-		  <div class="control-buttons">
+		    </div>
+		    <div class="control-buttons">
 			<button class="prev-button">Previous</button>
 			<button class="play-button">Play</button>
 			<button class="next-button">Next</button>
 			<button class="lyrics-toggle-button">Lyrics</button>
-		  </div>
+		    </div>
 		</div>
 		<div class="song-list">
-		  <h3>Songs</h3>
-		  <ul>
+		    <h3>Songs</h3>
+		    <ul>
 			${albumData.songs.map((song, index) => `
-			  <li data-index="${index}" class="${index === 0 ? 'active' : ''}">
+			    <li data-index="${index}" class="${index === 0 ? 'active' : ''}">
 				<span class="song-title">${song.title}</span>
 				<span class="song-duration">${song.duration}</span>
-			  </li>
+			    </li>
 			`).join('')}
-		  </ul>
+		    </ul>
 		</div>
 		<audio id="audio-element" src="${albumData.songs[0].src}"></audio>
-	  </div>
-	  <div class="lyrics-container">
+	    </div>
+	    <div class="lyrics-container">
 		<div class="lyrics-content">
-		  <h3>Lyrics</h3>
-		  <div class="lyrics-text"></div>
+		    <h3>Lyrics</h3>
+		    <div class="lyrics-text"></div>
 		</div>
-	  </div>
+	    </div>
 	`;
-    
-    // Add player to the DOM
-    playerContainer.innerHTML = playerHTML;
-    console.log('Added player HTML to container');
-    
-    // Add basic CSS directly
-    const style = document.createElement('style');
-    style.textContent = `
-	  .player-container {
-	    width: 100%;
-	    max-width: 1000px;
-	    margin: 0 auto;
-	    display: flex;
-	    justify-content: center;
-	    gap: 30px;
-	    transition: all 0.5s ease;
-	  }
-
-	  .player-container.show-lyrics {
-	    justify-content: space-between;
-	  }
-
-	// Fix the vanilla-player to maintain its size when lyrics   are shown
-	  .vanilla-player {
-	    width: 100%;
-	    max-width: 450px;
-	    min-width: 450px; /* Add this line to prevent shrinking */
-	    background-color: rgba(0, 0, 0, 0.7);
-	    border: 1px solid #fff;
-	    border-radius: 8px;
-	    overflow: hidden;
-	    transition: all 0.5s ease;
-	  }
-      .player-album-art {
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%;
-        position: relative;
-      }
-      
-      .player-album-art img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      
-      .player-controls {
-        padding: 20px;
-        border-top: 1px solid #333;
-      }
-      
-      .song-info {
-        margin-bottom: 15px;
-        text-align: center;
-      }
-      
-      .current-song-title {
-        margin: 0 0 10px 0;
-        color: #fff;
-        font-size: 18px;
-      }
-      
-      .time-display {
-        color: #ccc;
-        font-size: 14px;
-      }
-      
-      .progress-bar {
-        height: 4px;
-        background-color: #333;
-        margin: 15px 0;
-        cursor: pointer;
-        border-radius: 2px;
-      }
-      
-      .progress {
-        height: 100%;
-        width: 0;
-        background-color: #fff;
-        border-radius: 2px;
-      }
-      
-      .control-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-      }
-      
-      .control-buttons button {
-        background-color: #2ebd35;
-        color: white;
-        border: none;
-        padding: 10px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      
-      .control-buttons button:hover {
-        background-color: #249a2b;
-      }
-      
-      .lyrics-toggle-button {
-        background-color: #333 !important;
-      }
-      
-      .lyrics-toggle-button.active {
-        background-color: #2ebd35 !important;
-      }
-      
-      .song-list {
-        border-top: 1px solid #333;
-        padding: 20px;
-      }
-      
-      .song-list h3 {
-        color: #fff;
-        margin-top: 0;
-      }
-      
-      .song-list ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        max-height: 300px;
-        overflow-y: auto;
-      }
-      
-      .song-list ul::-webkit-scrollbar {
-        width: 5px;
-      }
-      
-      .song-list ul::-webkit-scrollbar-track {
-        background: #333;
-      }
-      
-      .song-list ul::-webkit-scrollbar-thumb {
-        background: #2ebd35;
-      }
-      
-      .song-list li {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border-bottom: 1px solid #333;
-        color: #fff;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      
-      .song-list li:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-      }
-      
-      .song-list li.active {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      .song-duration {
-        color: #999;
-      }
-      
-      /* Lyrics Container */
-	    .lyrics-container {
-	    width: 100%;
-	    max-width: 450px;
-	    min-width: 450px; /* Add this line for consistent sizing */
-	    background-color: rgba(0, 0, 0, 0.7);
-	    border: 1px solid #fff;
-	    border-radius: 8px;
-	    overflow: hidden;
-	    height: 0;
-	    opacity: 0;
-	    transition: all 0.5s ease;
-	    flex-shrink: 0;
-	  }
-
-	  .lyrics-container.visible {
-	    height: auto;
-	    opacity: 1;
-	  }
-
-      
-      .lyrics-content {
-        padding: 20px;
-        color: #fff;
-      }
-      
-      .lyrics-content h3 {
-        margin-top: 0;
-        text-align: center;
-        margin-bottom: 15px;
-        color: #2ebd35;
-      }
-      
-      .lyrics-text {
-	  white-space: pre-line;
-	  line-height: 1.6;
-	  overflow-y: auto;
-	  max-height: none; /* Change from 300px to fill container */
-	  padding: 0 10px 20px 0; /* Add bottom padding */
-      }
-      
-      .lyrics-text::-webkit-scrollbar {
-        width: 5px;
-      }
-      
-      .lyrics-text::-webkit-scrollbar-track {
-        background: #333;
-      }
-      
-      .lyrics-text::-webkit-scrollbar-thumb {
-        background: #2ebd35;
-      }
-      
-      /* Responsive Adjustments */
-      @media (max-width: 960px) {
-		.player-container {
-		flex-direction: column;
-		align-items: center;
-	  }
-	  
-	  .player-container.show-lyrics {
-		justify-content: center;
-	  }
-	  
-	  .vanilla-player, .lyrics-container {
-		min-width: auto; /* Allow full width on mobile */
-		max-width: 450px;
-		width: 100%;
-	  }
-	  
-	  .lyrics-container.visible {
-		margin-top: 30px;
-	  }
-      }
-    `;
-    
-    document.head.appendChild(style);
-    console.log('Added CSS styles');
-    
-    // Get DOM elements
-    console.log('Getting DOM elements...');
-    const audioElement = document.getElementById('audio-element');
-    console.log('Audio element:', audioElement);
-    
-    const playButton = document.querySelector('.play-button');
-    console.log('Play button:', playButton);
-    
-    const prevButton = document.querySelector('.prev-button');
-    console.log('Previous button:', prevButton);
-    
-    const nextButton = document.querySelector('.next-button');
-    console.log('Next button:', nextButton);
-    
-    const lyricsToggleButton = document.querySelector('.lyrics-toggle-button');
-    console.log('Lyrics toggle button:', lyricsToggleButton);
-    
-    const progressBar = document.querySelector('.progress-bar');
-    const progress = document.querySelector('.progress');
-    const currentTimeDisplay = document.querySelector('.current-time');
-    const songItems = document.querySelectorAll('.song-list li');
-    const lyricsContainer = document.querySelector('.lyrics-container');
-    const lyricsText = document.querySelector('.lyrics-text');
-    
-    if (!lyricsToggleButton) {
-      console.error('Lyrics toggle button not found!');
-      return;
-    }
-    
-    let currentSongIndex = 0;
-    let isPlaying = false;
-    let lyricsVisible = true; // Default to showing lyrics
-    
-    
-    // Function to update lyrics
-	function updateLyrics(index) {
-	  console.log('Updating lyrics for song index:', index);
-	  const lyrics = albumData.songs[index].lyrics || "Lyrics not available";
-	  lyricsText.textContent = lyrics;
-	  
-	  // Show lyrics container with animation only if toggled on
-	  if (lyricsVisible) {
-		showLyrics();
-	  }
-	}
-    
-    // Function to toggle lyrics visibility
-    function toggleLyrics() {
-      console.log('Toggling lyrics visibility');
-      lyricsVisible = !lyricsVisible;
-      
-      if (lyricsVisible) {
-        showLyrics();
-        lyricsToggleButton.classList.add('active');
-      } else {
-        hideLyrics();
-        lyricsToggleButton.classList.remove('active');
-      }
-    }
-    
-    // Function to show lyrics
-    function showLyrics() {
-      console.log('Showing lyrics');
-      playerContainer.classList.add('show-lyrics');
-      lyricsContainer.classList.add('visible');
-    }
-    
-    // Function to hide lyrics
-    function hideLyrics() {
-      console.log('Hiding lyrics');
-      playerContainer.classList.remove('show-lyrics');
-      lyricsContainer.classList.remove('visible');
-    }
-    
-    // Play/Pause function
-    function togglePlay() {
-      console.log('Toggle play/pause');
-      if (isPlaying) {
-        audioElement.pause();
-        playButton.textContent = 'Play';
-      } else {
-        audioElement.play().catch(err => {
-          console.error('Error playing audio:', err);
-          alert('Could not play audio. Check console for details.');
-        });
-        playButton.textContent = 'Pause';
         
-        // Show lyrics when playing
-        updateLyrics(currentSongIndex);
-      }
-      isPlaying = !isPlaying;
-    }
-    
-    // Basic song selection
-	function selectSong(index) {
-	  console.log('Selecting song index:', index);
-	  currentSongIndex = index;
-	  
-	  // Update audio source to the selected song
-	  audioElement.src = albumData.songs[index].src;
-	  
-	  // Update song title display
-	  document.querySelector('.current-song-title').textContent = albumData.songs[index].title;
-	  document.querySelector('.duration').textContent = albumData.songs[index].duration;
-	  
-	  // Update UI to reflect selected song
-	  songItems.forEach((item, i) => {
-		if (i === index) {
-		  item.classList.add('active');
-		} else {
-		  item.classList.remove('active');
+        // Add player to the DOM
+        playerContainer.innerHTML = playerHTML;
+        console.log('Added player HTML to container');
+        
+        // Add basic CSS directly
+		const style = document.createElement('style');
+		style.textContent = `
+		  .player-container {
+			width: 100%;
+			max-width: 1000px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			gap: 30px;
+			transition: all 0.5s ease;
+		  }
+		  
+		  .player-container.show-lyrics {
+			justify-content: space-between;
+		  }
+		  
+		  .vanilla-player {
+			width: 100%;
+			max-width: 500px;
+			background-color: rgba(0, 0, 0, 0.7);
+			border: 1px solid #fff;
+			border-radius: 8px;
+			overflow: hidden;
+			transition: transform 0.5s ease, opacity 0.5s ease;
+		  }
+		  
+		  .player-album-art {
+			width: 100%;
+			height: 0;
+			padding-bottom: 100%;
+			position: relative;
+		  }
+		  
+		  .player-album-art img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		  }
+		  
+		  .player-controls {
+			padding: 20px;
+			border-top: 1px solid #333;
+		  }
+		  
+		  .song-info {
+			margin-bottom: 15px;
+			text-align: center;
+		  }
+		  
+		  .current-song-title {
+			margin: 0 0 10px 0;
+			color: #fff;
+			font-size: 18px;
+		  }
+		  
+		  .time-display {
+			color: #ccc;
+			font-size: 14px;
+		  }
+		  
+		  .progress-bar {
+			height: 4px;
+			background-color: #333;
+			margin: 15px 0;
+			cursor: pointer;
+			border-radius: 2px;
+		  }
+		  
+		  .progress {
+			height: 100%;
+			width: 0;
+			background-color: #fff;
+			border-radius: 2px;
+		  }
+		  
+		  .control-buttons {
+			display: flex;
+			justify-content: center;
+			gap: 15px;
+			flex-wrap: wrap;
+		  }
+		  
+		  .control-buttons button {
+			background-color: #2ebd35;
+			color: white;
+			border: none;
+			padding: 10px 12px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		  }
+		  
+		  .control-buttons button:hover {
+			background-color: #249a2b;
+		  }
+		  
+		  .lyrics-toggle-button {
+			background-color: #333 !important;
+		  }
+		  
+		  .lyrics-toggle-button.active {
+			background-color: #2ebd35 !important;
+		  }
+		  
+		  .song-list {
+			border-top: 1px solid #333;
+			padding: 20px;
+			max-height: 400px;
+			overflow-y: auto;
+		  }
+		  
+		  .song-list h3 {
+			color: #fff;
+			margin-top: 0;
+			margin-bottom: 15px;
+		  }
+		  
+		  .song-list ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			overflow-y: auto;
+		  }
+		  
+		  .song-list ul::-webkit-scrollbar {
+			width: 5px;
+		  }
+		  
+		  .song-list ul::-webkit-scrollbar-track {
+			background: #333;
+		  }
+		  
+		  .song-list ul::-webkit-scrollbar-thumb {
+			background: #2ebd35;
+		  }
+		  
+		  .song-list li {
+			display: flex;
+			justify-content: space-between;
+			padding: 10px;
+			border-bottom: 1px solid #333;
+			color: #fff;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		  }
+		  
+		  .song-list li:hover {
+			background-color: rgba(255, 255, 255, 0.05);
+		  }
+		  
+		  .song-list li.active {
+			background-color: rgba(255, 255, 255, 0.1);
+		  }
+		  
+		  .song-duration {
+			color: #999;
+		  }
+		  
+		  /* Lyrics Container */
+		  .lyrics-container {
+			width: 100%;
+			max-width: 500px;
+			background-color: rgba(0, 0, 0, 0.7);
+			border: 1px solid #fff;
+			border-radius: 8px;
+			overflow: hidden;
+			height: 0;
+			width: 0;
+			opacity: 0;
+			transition: all 0.5s ease;
+			flex-shrink: 0;
+		  }
+		  
+		  .lyrics-container.visible {
+			height: auto;
+			width: 100%;
+			max-width: 500px;
+			opacity: 1;
+		  }
+		  
+		  .lyrics-content {
+			padding: 20px;
+			color: #fff;
+			max-height: 600px;
+			overflow-y: auto;
+		  }
+		  
+		  .lyrics-content h3 {
+			margin-top: 0;
+			text-align: center;
+			margin-bottom: 15px;
+			color: #2ebd35;
+		  }
+		  
+		  .lyrics-text {
+			white-space: pre-line;
+			line-height: 1.6;
+			padding-right: 10px;
+		  }
+		  
+		  .lyrics-text::-webkit-scrollbar {
+			width: 5px;
+		  }
+		  
+		  .lyrics-text::-webkit-scrollbar-track {
+			background: #333;
+		  }
+		  
+		  .lyrics-text::-webkit-scrollbar-thumb {
+			background: #2ebd35;
+		  }
+		  
+		  /* Animation for lyrics display */
+		  @keyframes slideIn {
+			from {
+			  transform: translateX(-30px);
+			  opacity: 0;
+			}
+			to {
+			  transform: translateX(0);
+			  opacity: 1;
+			}
+		  }
+		  
+		  .player-container.show-lyrics .vanilla-player {
+			transform: translateX(-15px);
+		  }
+		  
+		  .player-container.show-lyrics .lyrics-container {
+			animation: slideIn 0.5s ease forwards;
+		  }
+		  
+		  /* Responsive Adjustments */
+		  @media (max-width: 1050px) {
+			.player-container {
+			  flex-direction: column;
+			  align-items: center;
+			}
+			
+			.player-container.show-lyrics {
+			  justify-content: center;
+			}
+			
+			.player-container.show-lyrics .vanilla-player {
+			  transform: translateX(0);
+			}
+			
+			.vanilla-player, .lyrics-container {
+			  max-width: 500px;
+			  width: 100%;
+			}
+			
+			.lyrics-container.visible {
+			  margin-top: 30px;
+			}
+		  }
+		`;
+
+		document.head.appendChild(style);
+		console.log('Added CSS styles');
+        
+        // Get DOM elements
+        console.log('Getting DOM elements...');
+        const audioElement = document.getElementById('audio-element');
+        console.log('Audio element:', audioElement);
+        
+        const playButton = document.querySelector('.play-button');
+        console.log('Play button:', playButton);
+        
+        const prevButton = document.querySelector('.prev-button');
+        console.log('Previous button:', prevButton);
+        
+        const nextButton = document.querySelector('.next-button');
+        console.log('Next button:', nextButton);
+        
+        const lyricsToggleButton = document.querySelector('.lyrics-toggle-button');
+        console.log('Lyrics toggle button:', lyricsToggleButton);
+        
+        const progressBar = document.querySelector('.progress-bar');
+        const progress = document.querySelector('.progress');
+        const currentTimeDisplay = document.querySelector('.current-time');
+        const songItems = document.querySelectorAll('.song-list li');
+        const lyricsContainer = document.querySelector('.lyrics-container');
+        const lyricsText = document.querySelector('.lyrics-text');
+        
+        if (!lyricsToggleButton) {
+            console.error('Lyrics toggle button not found!');
+            return;
+        }
+        
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        let lyricsVisible = true; // Default to showing lyrics
+        
+
+		// Function to update lyrics
+		function updateLyrics(index) {
+		  console.log('Updating lyrics for song index:', index);
+		  const lyrics = albumData.songs[index].lyrics || "Lyrics not available";
+		  lyricsText.textContent = lyrics;
+		  
+		  // Show lyrics container with animation only if toggled on
+		  if (lyricsVisible) {
+			showLyrics();
+		  }
 		}
-	  });
-	  
-	  // If playing, update lyrics
-	  if (isPlaying) {
+
+		// Function to toggle lyrics visibility
+		function toggleLyrics() {
+		  console.log('Toggling lyrics visibility');
+		  lyricsVisible = !lyricsVisible;
+		  
+		  if (lyricsVisible) {
+			showLyrics();
+			lyricsToggleButton.classList.add('active');
+		  } else {
+			hideLyrics();
+			lyricsToggleButton.classList.remove('active');
+		  }
+		}
+
+		// Function to show lyrics
+		function showLyrics() {
+		  console.log('Showing lyrics');
+		  playerContainer.classList.add('show-lyrics');
+		  
+		  // Slight delay to allow the container class to apply
+		  setTimeout(() => {
+			lyricsContainer.classList.add('visible');
+		  }, 50);
+		}
+
+		// Function to hide lyrics
+		function hideLyrics() {
+		  console.log('Hiding lyrics');
+		  lyricsContainer.classList.remove('visible');
+		  
+		  // Slight delay to allow the animation to complete
+		  setTimeout(() => {
+			playerContainer.classList.remove('show-lyrics');
+		  }, 300);
+		}
+        
+        // Play/Pause function
+        function togglePlay() {
+            console.log('Toggle play/pause');
+            if (isPlaying) {
+                audioElement.pause();
+                playButton.textContent = 'Play';
+            } else {
+                audioElement.play().catch(err => {
+                    console.error('Error playing audio:', err);
+                    alert('Could not play audio. Check console for details.');
+                });
+                playButton.textContent = 'Pause';
+                
+                // Show lyrics when playing
+                updateLyrics(currentSongIndex);
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        // Basic song selection
+	function selectSong(index) {
+	    console.log('Selecting song index:', index);
+	    currentSongIndex = index;
+	    
+	    // Update audio source to the selected song
+	    audioElement.src = albumData.songs[index].src;
+	    
+	    // Update song title display
+	    document.querySelector('.current-song-title').textContent = albumData.songs[index].title;
+	    document.querySelector('.duration').textContent = albumData.songs[index].duration;
+	    
+	    // Update UI to reflect selected song
+	    songItems.forEach((item, i) => {
+		if (i === index) {
+		    item.classList.add('active');
+		} else {
+		    item.classList.remove('active');
+		}
+	    });
+	    
+	    // If playing, update lyrics
+	    if (isPlaying) {
 		updateLyrics(index);
-	  }
+	    }
 	}
 
-    
-    // Set up event listeners
-    console.log('Setting up event listeners');
-    
-    // Play/pause button
-    playButton.addEventListener('click', () => {
-      console.log('Play button clicked');
-      togglePlay();
-    });
-    
-    // Previous button
-    prevButton.addEventListener('click', () => {
-      console.log('Previous button clicked');
-      const newIndex = Math.max(0, currentSongIndex - 1);
-      selectSong(newIndex);
-    });
-    
-    // Next button
-    nextButton.addEventListener('click', () => {
-      console.log('Next button clicked');
-      const newIndex = Math.min(songItems.length - 1, currentSongIndex + 1);
-      selectSong(newIndex);
-    });
-    
-    // Lyrics toggle button
-    lyricsToggleButton.addEventListener('click', () => {
-      console.log('Lyrics toggle button clicked');
-      toggleLyrics();
-    });
-    
-    // Song selection
-    songItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        console.log('Song item clicked:', index);
-        selectSong(index);
-        if (!isPlaying) {
-          togglePlay();
-        }
-      });
-    });
-    
-    // Set initial state - lyrics toggle button active by default
-    lyricsToggleButton.classList.add('active');
-    console.log('Initialized lyrics toggle button');
-    
-    console.log('Player setup complete');
-  } catch (error) {
-    console.error('Error setting up player:', error);
-  }
+        
+        // Set up event listeners
+        console.log('Setting up event listeners');
+        
+        // Play/pause button
+        playButton.addEventListener('click', () => {
+            console.log('Play button clicked');
+            togglePlay();
+        });
+        
+        // Previous button
+        prevButton.addEventListener('click', () => {
+            console.log('Previous button clicked');
+            const newIndex = Math.max(0, currentSongIndex - 1);
+            selectSong(newIndex);
+        });
+        
+        // Next button
+        nextButton.addEventListener('click', () => {
+            console.log('Next button clicked');
+            const newIndex = Math.min(songItems.length - 1, currentSongIndex + 1);
+            selectSong(newIndex);
+        });
+        
+        // Lyrics toggle button
+        lyricsToggleButton.addEventListener('click', () => {
+            console.log('Lyrics toggle button clicked');
+            toggleLyrics();
+        });
+        
+        // Song selection
+        songItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                console.log('Song item clicked:', index);
+                selectSong(index);
+                if (!isPlaying) {
+                    togglePlay();
+                }
+            });
+        });
+        
+        // Set initial state - lyrics toggle button active by default
+        lyricsToggleButton.classList.add('active');
+        console.log('Initialized lyrics toggle button');
+        
+        console.log('Player setup complete');
+    } catch (error) {
+        console.error('Error setting up player:', error);
+    }
 });
