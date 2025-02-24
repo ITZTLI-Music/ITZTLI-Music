@@ -1,46 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Artist Name | Revolutionary AI-Driven Hip-Hop</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Artist Name | Music & Revolution</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="overlay">
-      <h1>Revolutionary AI-Driven Hip-Hop</h1>
-      <p>Transcending Boundaries Through Sound & Vision</p>
-      <a href="music.html" class="cta">Listen Now</a>
+
+    <!-- Video Background -->
+    <div class="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/your-ai-video.mp4" type="video/mp4">
+        </video>
     </div>
-  </header>
 
-  <!-- Navigation -->
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="music.html">Music</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="visuals.html">Visuals</a></li>
-      <li><a href="blog.html">Blog/Press</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#lyrics">Lyrics</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <!-- Main Content -->
-  <main class="content">
-    <section class="intro">
-      <h2>Welcome to the Revolution</h2>
-      <p>
-        This is your hub for innovative, AI-enhanced hip-hop—where each track challenges the norm and pushes creative boundaries.
-      </p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>ITZTLI</h1>
+        <p>Revolution Via Sound</p>
+    </header>
+
+    <!-- Music Section (Bandcamp Embed) -->
+    <section id="music">
+        <h2>Listen Now</h2>
+        <iframe style="border: 0; width: 100%; height: 120px;" 
+                src="<iframe style="border: 0; width: 400px; height: 472px;" src="https://bandcamp.com/EmbeddedPlayer/album=1029371013/size=large/bgcol=333333/linkcol=2ebd35/artwork=small/transparent=true/" seamless><a href="https://itztli.bandcamp.com/album/adelante">ADELANTE by ITZTLI</a></iframe>" 
+                seamless></iframe>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Your Artist Name. All rights reserved.</p>
-  </footer>
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Your personal story about your music, AI integration, and artistic vision.</p>
+    </section>
+
+    <!-- Lyrics Section -->
+    <section id="lyrics">
+        <h2>Lyrics</h2>
+        <button onclick="toggleLyrics()">Show Lyrics</button>
+        <div id="lyrics-content" class="hidden">
+            <p>Your song lyrics go here...</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Message the Artist</h2>
+        <form id="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="form-response"></p>
+    </section>
+
+    <!-- Footer with Social Links -->
+    <footer>
+        <p>Connect with me:</p>
+		<a href="https://www.youtube.com/@ITZTLI-music" target="_blank">Youtube
+		</a> |
+        <a href="https://www.instagram.com/itztli.music/" target="_blank">Instagram</a> |
+        <a href="https://soundcloud.com/itztli-22237560" target="_blank">SoundCloud</a> |
+        <a href="https://itztli.bandcamp.com/album/adelante" target="_blank">Bandcamp</a>
+    </footer>
+
 </body>
 </html>
