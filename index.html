@@ -35,27 +35,27 @@
 <!-- Music Section (Bandcamp Embed) -->
 <section id="music">
     <h2>Listen Now</h2>
-    <iframe style="border: 0; width: 400px; height: 472px;" 
-            src="https://bandcamp.com/EmbeddedPlayer/album=1029371013/size=large/bgcol=333333/linkcol=2ebd35/artwork=small/transparent=true/" 
-            seamless>
-    </iframe>
+    
+    <!-- Bandcamp Embed -->
+    <iframe id="bandcamp-player" style="border: 0; width: 400px; height: 472px;"
+            src="https://bandcamp.com/EmbeddedPlayer/album=1029371013/size=large/bgcol=333333/linkcol=2ebd35/artwork=small/transparent=true/"
+            seamless></iframe>
+
+    <!-- Lyrics Buttons (Initially Hidden) -->
+    <div id="lyrics-buttons">
+        <button class="lyrics-btn" data-song="song1">Lyrics for Song 1</button>
+        <button class="lyrics-btn" data-song="song2">Lyrics for Song 2</button>
+        <button class="lyrics-btn" data-song="song3">Lyrics for Song 3</button>
+    </div>
+
+    <!-- Lyrics Display (Initially Hidden) -->
+    <div id="lyrics-display" class="hidden">
+        <h3>Lyrics</h3>
+        <p id="lyrics-content"></p>
+        <button onclick="closeLyrics()">Close</button>
+    </div>
 </section>
 
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Your personal story about your music, AI integration, and artistic vision.</p>
-    </section>
-
-    <!-- Lyrics Section -->
-    <section id="lyrics">
-        <h2>Lyrics</h2>
-        <button onclick="toggleLyrics()">Show Lyrics</button>
-        <div id="lyrics-content" class="hidden">
-            <p>Your song lyrics go here...</p>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact">
