@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ITZTLI | Music & Revolution</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Add React dependencies -->
+    <!-- Add React dependencies with newer versions -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Add Babel for JSX support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.2/babel.min.js"></script>
     <!-- Your custom scripts -->
     <script defer src="script.js"></script>
-    <script defer src="music.js"></script>
+    <script defer type="module" src="music.js"></script>
 </head>
 <body>
-
     <!-- Video Background -->
     <div class="video-container">
         <video autoplay muted loop id="bg-video">
@@ -34,8 +35,7 @@
     <!-- Hero Section -->
     <header class="hero">
         <h1>ITZTLI</h1>
-        <p>ADELANTE
-		SATYR & SAVIOR</p>
+        <p>ADELANTE SATYR & SAVIOR</p>
     </header>
 
     <!-- Music Section with React Audio Player -->
@@ -44,11 +44,19 @@
         <div id="audio-player-root"></div>
     </section>
 
+    <!-- Missing About Section -->
+    <section id="about">
+        <h2>About</h2>
+        <div class="about-content">
+            <p>Add your artist bio here...</p>
+        </div>
+    </section>
+
     <!-- Merch Section -->
     <section id="merch">
         <h2>Merch</h2>
         <div class="merch-placeholder">
-            <h3>Merch Placeholder</h3>
+            <h3>Merch Coming Soon</h3>
             <p>Under Construction</p>
         </div>
     </section>
@@ -68,11 +76,12 @@
     <!-- Footer with Social Links -->
     <footer>
         <p>Connect with me:</p>
-        <a href="https://www.youtube.com/@ITZTLI-music" target="_blank">Youtube</a> |
-        <a href="https://www.instagram.com/itztli.music/" target="_blank">Instagram</a> |
-        <a href="https://soundcloud.com/itztli-22237560" target="_blank">SoundCloud</a> |
-        <a href="https://itztli.bandcamp.com/album/adelante" target="_blank">Bandcamp</a>
+        <div class="social-links">
+            <a href="https://www.youtube.com/@ITZTLI-music" target="_blank">Youtube</a> |
+            <a href="https://www.instagram.com/itztli.music/" target="_blank">Instagram</a> |
+            <a href="https://soundcloud.com/itztli-22237560" target="_blank">SoundCloud</a> |
+            <a href="https://itztli.bandcamp.com/album/adelante" target="_blank">Bandcamp</a>
+        </div>
     </footer>
-
 </body>
 </html>
