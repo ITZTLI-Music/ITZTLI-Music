@@ -883,35 +883,37 @@ it was success or defeat and the lessons from each.`
 			line-height: 1.6;
 		  }
 		  
+		  /* Player container needs to allow vertical alignment */
 		  .player-container {
 		    width: 100%;
-		    max-width: 1200px; /* Increased to give more room */
+		    max-width: 1200px;
 		    margin: 0 auto;
 		    display: flex;
 		    justify-content: center;
 		    gap: 30px;
 		    transition: all 0.5s ease;
+		    align-items: flex-start; /* Allow different vertical positioning */
 		  }
-
 		  .player-container.show-lyrics {
 		    justify-content: center; /* Center both elements */
 		  }
 		  
-		  /* Fixed-size player */
+		  /* Player with fixed height to show only 7 songs */
 		  .vanilla-player {
-			  width: 500px;
-			  min-width: 500px;
-			  max-width: 500px;
-			  height: auto; /* Let it size to content */
-			  display: flex;
-			  flex-direction: column;
-			  background-color: rgba(0, 0, 0, 0.7);
-			  border: 1px solid #fff;
-			  border-radius: 8px;
-			  overflow: hidden;
-			  transition: transform 0.5s ease;
-			  flex-shrink: 0;
-			}
+		    width: 500px;
+		    min-width: 500px;
+		    max-width: 500px;
+		    height: auto;
+		    max-height: 750px; /* Limit height to show ~7 songs */
+		    display: flex;
+		    flex-direction: column;
+		    background-color: rgba(0, 0, 0, 0.7);
+		    border: 1px solid #fff;
+		    border-radius: 8px;
+		    overflow: hidden;
+		    transition: transform 0.5s ease;
+		    flex-shrink: 0;
+		  }
 		  
 		  .player-album-art {
 			width: 100%;
@@ -997,11 +999,13 @@ it was success or defeat and the lessons from each.`
 			background-color: #2ebd35 !important;
 		  }
 		  
-		  /* Song list that shows all songs */
+		  /* Song list with scrollbar after 7 songs */
 		  .song-list {
+		    flex: 1;
 		    border-top: 1px solid #333;
 		    padding: 20px;
-		    overflow-y: visible; /* Show all songs */
+		    overflow-y: auto; /* Enable scrolling */
+		    max-height: 350px; /* Height for ~7 songs */
 		  }
 
 		  .song-list h3 {
@@ -1043,12 +1047,13 @@ it was success or defeat and the lessons from each.`
 			color: #999;
 		  }
 		  
-		  /* Fixed-height lyrics container */
+		  /* Adjust lyrics container to align with song list */
 		  .lyrics-container {
 		    width: 500px;
 		    min-width: 500px;
 		    max-width: 500px;
-		    height: auto; /* Match height of player */
+		    height: auto;
+		    max-height: 750px; /* Match player height */
 		    background-color: rgba(0, 0, 0, 0.7);
 		    border: 1px solid #fff;
 		    border-radius: 8px;
@@ -1058,6 +1063,8 @@ it was success or defeat and the lessons from each.`
 		    transition: opacity 0.5s ease, transform 0.5s ease;
 		    flex-shrink: 0;
 		    display: none; /* Start hidden */
+		    align-self: flex-start; /* Align to top of container */
+		    margin-top: 250px; /* Adjust to align with song list - tweak as needed */
 		  }
 		  
 		  .lyrics-container.visible {
