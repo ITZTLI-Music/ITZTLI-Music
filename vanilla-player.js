@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Clear any existing content
   audioPlayerRoot.innerHTML = '';
   
-  // Album data with lyrics
+ // Album data with lyrics
   const albumData = {
     title: "ADELANTE",
     artwork: "./assets/images/album-art.png",
@@ -874,18 +874,23 @@ it was success or defeat and the lessons from each.`
       max-width: 1000px;
       margin: 0 auto;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       gap: 30px;
+      transition: all 0.5s ease;
+    }
+    
+    .player-container.show-lyrics {
+      justify-content: space-between;
     }
     
     .vanilla-player {
       width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
+      max-width: 450px;
       background-color: rgba(0, 0, 0, 0.7);
       border: 1px solid #fff;
       border-radius: 8px;
       overflow: hidden;
+      transition: all 0.5s ease;
     }
     
     .player-album-art {
@@ -943,14 +948,15 @@ it was success or defeat and the lessons from each.`
     .control-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
     }
     
     .control-buttons button {
       background-color: #2ebd35;
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 12px;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -958,6 +964,14 @@ it was success or defeat and the lessons from each.`
     
     .control-buttons button:hover {
       background-color: #249a2b;
+    }
+    
+    .lyrics-toggle-button {
+      background-color: #333 !important;
+    }
+    
+    .lyrics-toggle-button.active {
+      background-color: #2ebd35 !important;
     }
     
     .song-list {
@@ -1015,21 +1029,22 @@ it was success or defeat and the lessons from each.`
     /* Lyrics Container */
     .lyrics-container {
       width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
+      max-width: 450px;
       background-color: rgba(0, 0, 0, 0.7);
       border: 1px solid #fff;
       border-radius: 8px;
       overflow: hidden;
       height: 0;
+      width: 0;
       opacity: 0;
-      transition: height 0.5s ease, opacity 0.5s ease;
+      transition: all 0.5s ease;
+      flex-shrink: 0;
     }
     
     .lyrics-container.visible {
       height: auto;
-      min-height: 200px;
-      max-height: 400px;
+      width: 100%;
+      max-width: 450px;
       opacity: 1;
     }
     
@@ -1066,27 +1081,18 @@ it was success or defeat and the lessons from each.`
     }
     
     /* Responsive Adjustments */
-    @media (min-width: 1024px) {
+    @media (max-width: 960px) {
       .player-container {
-        flex-direction: row;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
       }
       
-      .vanilla-player, .lyrics-container {
-        flex: 1;
-        max-width: 50%;
-      }
-      
-      .lyrics-container {
-        height: auto;
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+      .player-container.show-lyrics {
+        justify-content: center;
       }
       
       .lyrics-container.visible {
-        opacity: 1;
-        transform: translateX(0);
+        margin-top: 30px;
       }
     }
   `;
@@ -1097,27 +1103,53 @@ it was success or defeat and the lessons from each.`
   const playButton = document.querySelector('.play-button');
   const prevButton = document.querySelector('.prev-button');
   const nextButton = document.querySelector('.next-button');
+  const lyricsToggleButton = document.querySelector('.lyrics-toggle-button');
   const progressBar = document.querySelector('.progress-bar');
   const progress = document.querySelector('.progress');
   const currentTimeDisplay = document.querySelector('.current-time');
   const songItems = document.querySelectorAll('.song-list li');
   const lyricsContainer = document.querySelector('.lyrics-container');
   const lyricsText = document.querySelector('.lyrics-text');
+  const playerContainer = document.querySelector('.player-container');
   
   let currentSongIndex = 0;
   let isPlaying = false;
+  let lyricsVisible = true; // Default to showing lyrics
   
   // Function to update lyrics
   function updateLyrics(index) {
     const lyrics = albumData.songs[index].lyrics || "Lyrics not available";
     lyricsText.textContent = lyrics;
     
-    // Show lyrics container with animation
-    if (!lyricsContainer.classList.contains('visible')) {
-      setTimeout(() => {
-        lyricsContainer.classList.add('visible');
-      }, 100);
+    // Show lyrics container with animation only if toggled on
+    if (lyricsVisible) {
+      showLyrics();
     }
+  }
+  
+  // Function to toggle lyrics visibility
+  function toggleLyrics() {
+    lyricsVisible = !lyricsVisible;
+    
+    if (lyricsVisible) {
+      showLyrics();
+      lyricsToggleButton.classList.add('active');
+    } else {
+      hideLyrics();
+      lyricsToggleButton.classList.remove('active');
+    }
+  }
+  
+  // Function to show lyrics
+  function showLyrics() {
+    playerContainer.classList.add('show-lyrics');
+    lyricsContainer.classList.add('visible');
+  }
+  
+  // Function to hide lyrics
+  function hideLyrics() {
+    playerContainer.classList.remove('show-lyrics');
+    lyricsContainer.classList.remove('visible');
   }
   
   // Play/Pause function
@@ -1222,6 +1254,12 @@ it was success or defeat and the lessons from each.`
     console.error('Audio error:', e);
     alert(`Could not load audio track: ${albumData.songs[currentSongIndex].title}`);
   });
+  
+  // Set up lyrics toggle button
+  lyricsToggleButton.addEventListener('click', toggleLyrics);
+  
+  // Initialize lyrics toggle button state (active by default)
+  lyricsToggleButton.classList.add('active');
   
   console.log('Enhanced player with lyrics initialized');
 });
