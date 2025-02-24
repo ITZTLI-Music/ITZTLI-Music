@@ -899,19 +899,19 @@ it was success or defeat and the lessons from each.`
 		  
 		  /* Fixed-size player */
 		  .vanilla-player {
-			width: 500px;
-			min-width: 500px;
-			max-width: 500px;
-			height: 800px; /* Fixed height to accommodate all songs */
-			display: flex;
-			flex-direction: column;
-			background-color: rgba(0, 0, 0, 0.7);
-			border: 1px solid #fff;
-			border-radius: 8px;
-			overflow: hidden;
-			transition: transform 0.5s ease;
-			flex-shrink: 0;
-		  }
+			  width: 500px;
+			  min-width: 500px;
+			  max-width: 500px;
+			  height: auto; /* Let it size to content */
+			  display: flex;
+			  flex-direction: column;
+			  background-color: rgba(0, 0, 0, 0.7);
+			  border: 1px solid #fff;
+			  border-radius: 8px;
+			  overflow: hidden;
+			  transition: transform 0.5s ease;
+			  flex-shrink: 0;
+			}
 		  
 		  .player-album-art {
 			width: 100%;
@@ -997,26 +997,28 @@ it was success or defeat and the lessons from each.`
 			background-color: #2ebd35 !important;
 		  }
 		  
-		  /* Song list that fits all songs without scrolling */
+		  /* Song list that shows all songs */
 		  .song-list {
-			flex: 1;
-			border-top: 1px solid #333;
-			padding: 20px;
-			overflow-y: auto;
+		    border-top: 1px solid #333;
+		    padding: 20px;
+		    overflow-y: visible; /* Show all songs */
 		  }
-		  
+
 		  .song-list h3 {
-			color: #fff;
-			margin-top: 0;
-			margin-bottom: 15px;
-			font-size: 18px;
-		  }
-		  
-		  .song-list ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		  }
+		    color: #fff;
+		    margin-top: 0;
+		    margin-bottom: 15px;
+		    font-size: 18px;
+	  	}
+
+	  	  .song-list ul {
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+		    display: flex;
+		    flex-direction: column;
+		    gap: 0; /* No gap between songs */
+		}
 		  
 		  .song-list li {
 			display: flex;
@@ -1043,19 +1045,19 @@ it was success or defeat and the lessons from each.`
 		  
 		  /* Fixed-height lyrics container */
 		  .lyrics-container {
-			width: 500px;
-			min-width: 500px;
-			max-width: 500px;
-			height: 800px; /* Match player height exactly */
-			background-color: rgba(0, 0, 0, 0.7);
-			border: 1px solid #fff;
-			border-radius: 8px;
-			overflow: hidden;
-			opacity: 0;
-			transform: translateX(-30px);
-			transition: opacity 0.5s ease, transform 0.5s ease;
-			flex-shrink: 0;
-			display: none; /* Start hidden */
+		    width: 500px;
+		    min-width: 500px;
+		    max-width: 500px;
+		    height: auto; /* Match height of player */
+		    background-color: rgba(0, 0, 0, 0.7);
+		    border: 1px solid #fff;
+		    border-radius: 8px;
+		    overflow: hidden;
+		    opacity: 0;
+		    transform: translateX(-30px);
+		    transition: opacity 0.5s ease, transform 0.5s ease;
+		    flex-shrink: 0;
+		    display: none; /* Start hidden */
 		  }
 		  
 		  .lyrics-container.visible {
@@ -1206,6 +1208,11 @@ it was success or defeat and the lessons from each.`
 		  
 		  // Slight delay to allow the container class to apply
 		  setTimeout(() => {
+			// Get the height of the player to match
+			const playerHeight = document.querySelector('.vanilla-player').offsetHeight;
+			lyricsContainer.style.height = playerHeight + 'px';
+			
+			// Now show the lyrics
 			lyricsContainer.classList.add('visible');
 		  }, 50);
 		}
