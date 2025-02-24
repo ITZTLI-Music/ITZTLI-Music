@@ -17,7 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     songs: [
       { title: "DEUS EX MACHINA", src: "./assets/audio/DEUS EX MACHINA.mp3", duration: "2:07" },
       { title: "ADDRESSING MY INTENTIONS", src: "./assets/audio/ADDRESSING MY INTENTIONS.mp3", duration: "2:08" },
-      // Add more songs if needed
+      { title: "ROAM FOREVER", src: "./assets/audio/ROAM FOREVER.mp3", duration: "1:55" },
+	  { title: "MORAL PHILOSOPHY", src: "./assets/audio/MORAL PHILOSOPHY.mp3", duration: "3:26" },
+      { title: "I COULD USE A THING OR TWO", src: "./assets/audio/I COULD USE A THING OR TWO.mp3", duration: "2:15" },
+      { title: "ALL GAS NO BRAKES", src: "./assets/audio/ALL GAS NO BRAKES.mp3", duration: "2:21" },
+      { title: "POLYPHASIC SLEEPING", src: "./assets/audio/POLYPHASIC SLEEPING.mp3", duration: "3:22" },
+      { title: "RIVALROUS TACTICS", src: "./assets/audio/RIVALROUS TACTICS.mp3", duration: "2:11" },
+      { title: "CHORIZO CON PAPAS", src: "./assets/audio/CHORIZO CON PAPAS.mp3", duration: "2:10" },
+      { title: "COLLECTIVE COGNIZANCE", src: "./assets/audio/COLLECTIVE COGNIZANCE.mp3", duration: "3:58" },
+      { title: "ROGUE MAGICIAN", src: "./assets/audio/ROGUE MAGICIAN.mp3", duration: "3:39" },
+      { title: "FOREVER & ALWAYS", src: "./assets/audio/FOREVER & ALWAYS.mp3", duration: "3:52" },
+      { title: "SEDITION OF THE ZEITGEIST", src: "./assets/audio/SEDITION OF THE ZEITGEIST.mp3", duration: "5:16" }
     ]
   };
   
