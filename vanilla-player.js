@@ -883,16 +883,15 @@ it was success or defeat and the lessons from each.`
 			line-height: 1.6;
 		  }
 		  
-		  /* Player container needs to allow vertical alignment */
+		  /* Player container needs flex layout to align player and lyrics */
 		  .player-container {
-		   width: 100%;
-		   max-width: 1200px;
-		   margin: 0 auto;
-		   display: flex;
-		   justify-content: center;
-		   gap: 30px;
-		   transition: all 0.5s ease;
-		   align-items: center; /* Center items vertically */
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			gap: 30px;
+			align-items: flex-start; /* Align items to the top */
 		  }
 				  .player-container.show-lyrics {
 		    justify-content: center; /* Center both elements */
@@ -900,19 +899,18 @@ it was success or defeat and the lessons from each.`
 		  
 		  /* Player with fixed height to show only 7 songs */
 		  .vanilla-player {
-		    width: 500px;
-		    min-width: 500px;
-		    max-width: 500px;
-		    height: auto;
-		    max-height: 750px; /* Limit height to show ~7 songs */
-		    display: flex;
-		    flex-direction: column;
-		    background-color: rgba(0, 0, 0, 0.7);
-		    border: 1px solid #fff;
-		    border-radius: 8px;
-		    overflow: hidden;
-		    transition: transform 0.5s ease;
-		    flex-shrink: 0;
+			width: 500px;
+			min-width: 500px;
+			max-width: 500px;
+			height: auto;
+			max-height: 750px;
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.7);
+			border: 1px solid #fff;
+			border-radius: 8px;
+			overflow: hidden;
+			flex-shrink: 0;
 		  }
 		  
 		  .player-album-art {
@@ -999,13 +997,13 @@ it was success or defeat and the lessons from each.`
 			background-color: #2ebd35 !important;
 		  }
 		  
-		  /* Song list with scrollbar after 7 songs */
+		  /* Song list with scrollbar for 7 songs */
 		  .song-list {
-		    flex: 1;
-		    border-top: 1px solid #333;
-		    padding: 20px;
-		    overflow-y: auto; /* Enable scrolling */
-		    max-height: 350px; /* Height for ~7 songs */
+			flex: 1;
+			border-top: 1px solid #333;
+			padding: 20px;
+			overflow-y: auto;
+			max-height: 350px; /* Specifically set for 7 songs */
 		  }
 
 		  .song-list h3 {
@@ -1047,7 +1045,7 @@ it was success or defeat and the lessons from each.`
 			color: #999;
 		  }
 		  
-		  /* Adjust lyrics container to align with song list */
+		  /* Lyrics container positioned right next to song list */
 		  .lyrics-container {
 			width: 500px;
 			min-width: 500px;
@@ -1059,9 +1057,8 @@ it was success or defeat and the lessons from each.`
 			opacity: 0;
 			transform: translateX(-30px);
 			transition: opacity 0.5s ease, transform 0.5s ease;
-			flex-shrink: 0;
-			display: none; /* Start hidden */
-			margin-top: 0; /* Remove previous top margin */
+			display: none;
+			margin-top: 0;
 			align-self: flex-start;
 		  }
 		  
@@ -1077,7 +1074,7 @@ it was success or defeat and the lessons from each.`
 			height: 350px; /* Match song list height */
 			display: flex;
 			flex-direction: column;
-			overflow-y: auto; /* Add scrollbar if lyrics are long */
+			overflow-y: auto;
 		  }
 		  
 		  .lyrics-content h3 {
@@ -1117,30 +1114,23 @@ it was success or defeat and the lessons from each.`
 		  
 		  /* Responsive adjustments */
 		  @media (max-width: 1050px) {
-			.player-container {
-			  flex-direction: column;
+		    .player-container {
+		  	  flex-direction: column;
 			  align-items: center;
-			}
-			
-			.player-container.show-lyrics {
-			  justify-content: center;
-			}
-			
-			.player-container.show-lyrics .vanilla-player {
-			  transform: translateX(0);
-			}
-			
-			.vanilla-player, .lyrics-container {
-			  width: 100%;
+		    }
+		  
+		    .vanilla-player, 
+		    .lyrics-container {
+		  	  width: 100%;
 			  min-width: 0;
 			  max-width: 500px;
-			}
-			
-			.lyrics-container.visible {
-			  margin-top: 30px;
+		    }
+		  
+		    .lyrics-container.visible {
+			  margin-top: 0; // Remove the extra margin
 			  transform: translateX(0);
 			  display: block;
-			}
+		    }
 		  }
 		`;
 
