@@ -126,95 +126,75 @@ nav ul li a:hover {
   margin: 0 auto;
 }
 
-.player-container {
-  flex: 0 0 400px;
-}
-
-.lyrics-container {
-  flex: 0 0 300px;
-  text-align: left;
-}
-
-/* Lyrics Buttons Styling */
-.lyrics-btn {
-  background: rgba(46, 189, 53, 0.2);
-  border: 1px solid var(--primary-color);
-  color: var(--text-color);
-  padding: 12px 20px;
-  margin: 5px 0;
-  width: 100%;
-  text-align: left;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: var(--transition);
-  opacity: 0;
-  transform: translateX(-20px);
-}
-
-.lyrics-btn.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.lyrics-btn:hover {
-  background: rgba(46, 189, 53, 0.4);
-}
-
-.lyrics-btn.active {
-  background: var(--primary-color);
-}
-
-/* Lyrics Display */
-#lyrics-display {
-  background: rgba(0, 0, 0, 0.9);
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#lyrics-display.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#lyrics-display h3 {
-  color: var(--primary-color);
-  margin-top: 0;
-}
-
-/* Merch Section */
-#merch {
+/* Contact Section */
+#contact {
   padding: 100px 20px;
   background: rgba(0, 0, 0, 0.7);
+  text-align: center;
 }
 
-.merch-placeholder {
+#contact h2 {
+  margin-bottom: 40px;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
   max-width: 600px;
-  margin: 40px auto;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0 auto;
+  gap: 20px;
 }
 
-/* Responsive Design Updates */
-@media (max-width: 968px) {
-  .music-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .lyrics-container {
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .lyrics-btn {
-    opacity: 1;
-    transform: none;
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  border-radius: 5px;
+  transition: var(--transition);
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#contact textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+#contact button {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#contact button:hover {
+  background: #249a2b;
+  transform: translateY(-2px);
+}
+
+#form-response {
+  margin-top: 20px;
+  color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #contact form {
+    padding: 0 20px;
   }
 }

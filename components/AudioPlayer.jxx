@@ -1,0 +1,172 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
+
+const albumData = {
+  title: "ADELANTE",
+  artwork: "/assets/images/album-art.png", // Update this path to match your actual PNG file location
+  songs: [
+    { title: "DEUS EX MACHINA", src: "/assets/audio/DEUS EX MACHINA.mp3", duration: "2:07" },
+    { title: "ADDRESSING MY INTENTIONS", src: "/assets/audio/ADDRESSING MY INTENTIONS.mp3", duration: "2:08" },
+    { title: "ROAM FOREVER", src: "/assets/audio/ROAM FOREVER.mp3", duration: "1:55" },
+    { title: "MORAL PHILOSOPHY", src: "/assets/audio/MORAL PHILOSOPHY.mp3", duration: "3:26" },
+    { title: "I COULD USE A THING OR TWO", src: "/assets/audio/I COULD USE A THING OR TWO.mp3", duration: "2:15" },
+    { title: "ALL GAS NO BRAKES", src: "/assets/audio/ALL GAS NO BRAKES.mp3", duration: "2:21" },
+    { title: "POLYPHASIC SLEEPING", src: "/assets/audio/POLYPHASIC SLEEPING.mp3", duration: "3:22" },
+    { title: "RIVALROUS TACTICS", src: "/assets/audio/RIVALROUS TACTICS.mp3", duration: "2:11" },
+    { title: "CHORIZO CON PAPAS", src: "/assets/audio/CHORIZO CON PAPAS.mp3", duration: "2:10" },
+    { title: "COLLECTIVE COGNIZANCE", src: "/assets/audio/COLLECTIVE COGNIZANCE.mp3", duration: "3:58" },
+    { title: "ROGUE MAGICIAN", src: "/assets/audio/ROGUE MAGICIAN.mp3", duration: "3:39" },
+    { title: "FOREVER & ALWAYS", src: "/assets/audio/FOREVER & ALWAYS.mp3", duration: "3:52" },
+    { title: "SEDITION OF THE ZEITGEIST", src: "/assets/audio/SEDITION OF THE ZEITGEIST.mp3", duration: "5:16" }
+  ]
+};
+
+export default function AudioPlayer() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.addEventListener('loadedmetadata', () => setDuration(audio.duration));
+      audio.addEventListener('timeupdate', () => setCurrentTime(audio.currentTime));
+      audio.addEventListener('ended', () => handleNext());
+    }
+    return () => {
+      if (audio) {
+        audio.removeEventListener('loadedmetadata', () => setDuration(audio.duration));
+        audio.removeEventListener('timeupdate', () => setCurrentTime(audio.currentTime));
+        audio.removeEventListener('ended', () => handleNext());
+      }
+    };
+  }, [currentSong]);
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleNext = () => {
+    setCurrentSong((prev) => (prev + 1) % albumData.songs.length);
+  };
+
+  const handlePrevious = () => {
+    setCurrentSong((prev) => (prev - 1 + albumData.songs.length) % albumData.songs.length);
+  };
+
+  const handleSongSelect = (index) => {
+    setCurrentSong(index);
+    setIsPlaying(true);
+    audioRef.current.play();
+  };
+
+  const handleTimeUpdate = (e) => {
+    const clickPosition = e.nativeEvent.offsetX / e.target.offsetWidth;
+    const newTime = clickPosition * duration;
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
+  return (
+    <div className="w-full max-w-xl mx-auto bg-black border border-white rounded-lg overflow-hidden">
+      <audio
+        ref={audioRef}
+        src={albumData.songs[currentSong].src}
+        className="hidden"
+      />
+      
+      {/* Album Art */}
+      <div className="w-full aspect-square">
+        <img 
+          src={albumData.artwork} 
+          alt={albumData.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
+      {/* Player Controls */}
+      <div className="p-6 border-t border-white">
+        {/* Progress Bar */}
+        <div 
+          className="h-1 w-full bg-gray-800 rounded-full mb-4 cursor-pointer"
+          onClick={handleTimeUpdate}
+        >
+          <div 
+            className="h-full bg-white rounded-full"
+            style={{ width: `${(currentTime / duration) * 100}%` }}
+          />
+        </div>
+        
+        {/* Time and Title */}
+        <div className="flex justify-between text-sm text-white mb-4">
+          <span>{formatTime(currentTime)}</span>
+          <span className="text-center truncate px-2">
+            {albumData.songs[currentSong].title}
+          </span>
+          <span>{formatTime(duration)}</span>
+        </div>
+        
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-6 mb-6">
+          <button 
+            onClick={handlePrevious}
+            className="text-white hover:text-gray-300 transition"
+          >
+            <SkipBack size={24} />
+          </button>
+          
+          <button 
+            onClick={handlePlayPause}
+            className="bg-white text-black p-4 rounded-full hover:bg-gray-200 transition"
+          >
+            {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+          </button>
+          
+          <button 
+            onClick={handleNext}
+            className="text-white hover:text-gray-300 transition"
+          >
+            <SkipForward size={24} />
+          </button>
+          
+          <button 
+            onClick={() => setIsMuted(!isMuted)}
+            className="text-white hover:text-gray-300 transition"
+          >
+            {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+          </button>
+        </div>
+      </div>
+      
+      {/* Song List */}
+      <div className="border-t border-white">
+        {albumData.songs.map((song, index) => (
+          <button
+            key={index}
+            onClick={() => handleSongSelect(index)}
+            className={`w-full px-6 py-3 text-left hover:bg-gray-900 transition flex justify-between items-center ${
+              currentSong === index ? 'bg-gray-900' : ''
+            }`}
+          >
+            <span className="text-white truncate">{song.title}</span>
+            <span className="text-gray-400">{song.duration}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}

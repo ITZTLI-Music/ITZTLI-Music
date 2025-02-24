@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Artist Name | Music & Revolution</title>
+    <title>ITZTLI | Music & Revolution</title>
     <link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Add React dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Your custom scripts -->
     <script defer src="script.js"></script>
+    <script defer src="music.js"></script>
 </head>
 <body>
 
@@ -22,7 +26,7 @@
         <ul>
             <li><a href="#music">Music</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#lyrics">Lyrics</a></li>
+            <li><a href="#merch">Merch</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -30,51 +34,23 @@
     <!-- Hero Section -->
     <header class="hero">
         <h1>ITZTLI</h1>
-        <p>ADELANTE</p>
+        <p>Revolution Via Sound</p>
     </header>
 
-<section id="music">
-    <h2>Listen Now</h2>
-    <div class="music-container">
-        <div class="lyrics-container">
-            <div id="lyrics-buttons">
-                <button class="lyrics-btn" data-song="song1">Song 1 Lyrics</button>
-                <button class="lyrics-btn" data-song="song2">Song 2 Lyrics</button>
-                <button class="lyrics-btn" data-song="song3">Song 3 Lyrics</button>
-            </div>
-            <div id="lyrics-display" class="hidden">
-                <h3 id="lyrics-title"></h3>
-                <p id="lyrics-content"></p>
-                <button onclick="closeLyrics()" class="close-btn">Close</button>
-            </div>
+    <!-- Music Section with React Audio Player -->
+    <section id="music">
+        <h2>Listen Now</h2>
+        <div id="audio-player-root"></div>
+    </section>
+
+    <!-- Merch Section -->
+    <section id="merch">
+        <h2>Merch</h2>
+        <div class="merch-placeholder">
+            <h3>Coming Soon</h3>
+            <p>Exclusive merchandise will be available here shortly. Stay tuned!</p>
         </div>
-        <div class="player-container">
-            <iframe id="bandcamp-player" style="border: 0; width: 400px; height: 472px;"
-                    src="https://bandcamp.com/EmbeddedPlayer/album=1029371013/size=large/bgcol=333333/linkcol=2ebd35/artwork=small/transparent=true/"
-                    seamless></iframe>
-        </div>
-    </div>
-</section>
-
-<!-- Add new Merch Section -->
-<section id="merch">
-    <h2>Merch</h2>
-    <div class="merch-placeholder">
-        <h3>Coming Soon</h3>
-        <p>Exclusive merchandise will be available here shortly. Stay tuned!</p>
-    </div>
-</section>
-
-<!-- Update Navigation -->
-<nav>
-    <ul>
-        <li><a href="#music">Music</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#merch">Merch</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
-
+    </section>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -91,8 +67,7 @@
     <!-- Footer with Social Links -->
     <footer>
         <p>Connect with me:</p>
-		<a href="https://www.youtube.com/@ITZTLI-music" target="_blank">Youtube
-		</a> |
+        <a href="https://www.youtube.com/@ITZTLI-music" target="_blank">Youtube</a> |
         <a href="https://www.instagram.com/itztli.music/" target="_blank">Instagram</a> |
         <a href="https://soundcloud.com/itztli-22237560" target="_blank">SoundCloud</a> |
         <a href="https://itztli.bandcamp.com/album/adelante" target="_blank">Bandcamp</a>
