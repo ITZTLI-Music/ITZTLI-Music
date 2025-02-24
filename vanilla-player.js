@@ -877,30 +877,31 @@ it was success or defeat and the lessons from each.`
     // Add basic CSS directly
     const style = document.createElement('style');
     style.textContent = `
-      .player-container {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        transition: all 0.5s ease;
-      }
-      
-      .player-container.show-lyrics {
-        justify-content: space-between;
-      }
-      
-      .vanilla-player {
-        width: 100%;
-        max-width: 450px;
-        background-color: rgba(0, 0, 0, 0.7);
-        border: 1px solid #fff;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: all 0.5s ease;
-      }
-      
+	  .player-container {
+	    width: 100%;
+	    max-width: 1000px;
+	    margin: 0 auto;
+	    display: flex;
+	    justify-content: center;
+	    gap: 30px;
+	    transition: all 0.5s ease;
+	  }
+
+	  .player-container.show-lyrics {
+	    justify-content: space-between;
+	  }
+
+	// Fix the vanilla-player to maintain its size when lyrics   are shown
+	  .vanilla-player {
+	    width: 100%;
+	    max-width: 450px;
+	    min-width: 450px; /* Add this line to prevent shrinking */
+	    background-color: rgba(0, 0, 0, 0.7);
+	    border: 1px solid #fff;
+	    border-radius: 8px;
+	    overflow: hidden;
+	    transition: all 0.5s ease;
+	  }
       .player-album-art {
         width: 100%;
         height: 0;
@@ -1035,26 +1036,25 @@ it was success or defeat and the lessons from each.`
       }
       
       /* Lyrics Container */
-      .lyrics-container {
-        width: 100%;
-        max-width: 450px;
-        background-color: rgba(0, 0, 0, 0.7);
-        border: 1px solid #fff;
-        border-radius: 8px;
-        overflow: hidden;
-        height: 0;
-        width: 0;
-        opacity: 0;
-        transition: all 0.5s ease;
-        flex-shrink: 0;
-      }
-      
-      .lyrics-container.visible {
-        height: auto;
-        width: 100%;
-        max-width: 450px;
-        opacity: 1;
-      }
+	    .lyrics-container {
+	    width: 100%;
+	    max-width: 450px;
+	    min-width: 450px; /* Add this line for consistent sizing */
+	    background-color: rgba(0, 0, 0, 0.7);
+	    border: 1px solid #fff;
+	    border-radius: 8px;
+	    overflow: hidden;
+	    height: 0;
+	    opacity: 0;
+	    transition: all 0.5s ease;
+	    flex-shrink: 0;
+	  }
+
+	  .lyrics-container.visible {
+	    height: auto;
+	    opacity: 1;
+	  }
+
       
       .lyrics-content {
         padding: 20px;
@@ -1069,11 +1069,11 @@ it was success or defeat and the lessons from each.`
       }
       
       .lyrics-text {
-        white-space: pre-line;
-        line-height: 1.6;
-        overflow-y: auto;
-        max-height: 300px;
-        padding-right: 10px;
+	  white-space: pre-line;
+	  line-height: 1.6;
+	  overflow-y: auto;
+	  max-height: none; /* Change from 300px to fill container */
+	  padding: 0 10px 20px 0; /* Add bottom padding */
       }
       
       .lyrics-text::-webkit-scrollbar {
@@ -1090,18 +1090,24 @@ it was success or defeat and the lessons from each.`
       
       /* Responsive Adjustments */
       @media (max-width: 960px) {
-        .player-container {
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .player-container.show-lyrics {
-          justify-content: center;
-        }
-        
-        .lyrics-container.visible {
-          margin-top: 30px;
-        }
+		.player-container {
+		flex-direction: column;
+		align-items: center;
+	  }
+	  
+	  .player-container.show-lyrics {
+		justify-content: center;
+	  }
+	  
+	  .vanilla-player, .lyrics-container {
+		min-width: auto; /* Allow full width on mobile */
+		max-width: 450px;
+		width: 100%;
+	  }
+	  
+	  .lyrics-container.visible {
+		margin-top: 30px;
+	  }
       }
     `;
     
