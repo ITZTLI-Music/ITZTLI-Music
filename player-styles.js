@@ -202,25 +202,6 @@ export const playerStyles = `
     border-left: 3px solid #2ebd35;
   }
   
-  [class^="lyrics-container"] {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 1px solid #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    display: none;
-    margin-top: 20px;
-  }
-  
-  [class^="lyrics-container"].visible {
-    opacity: 1;
-    transform: translateY(0);
-    display: block;
-  }
-  
   .lyrics-content {
     padding: 20px;
     color: #fff;

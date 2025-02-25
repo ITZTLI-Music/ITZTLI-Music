@@ -34,10 +34,4 @@ export const createPlayerTemplate = (albumData, playerId) => `
         </div>
         <audio id="audio-element-${playerId}" src="${albumData.songs[0].src}"></audio>
     </div>
-    <div class="lyrics-container-${playerId} lyrics-container">
-        <div class="lyrics-content">
-            <h3>Lyrics</h3>
-            <div class="lyrics-text-${playerId}">${albumData.songs[0].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available'}</div>
-        </div>
-    </div>
 `;

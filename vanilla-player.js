@@ -77,14 +77,17 @@ function initializePlayer(playerId, albumData) {
 
     // Toggle lyrics visibility
     function toggleLyrics() {
-        lyricsVisible = !lyricsVisible;
+        const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
         
-        if (lyricsVisible) {
-            showLyrics();
-            lyricsToggleButton.textContent = 'Hide Lyrics';
-        } else {
-            hideLyrics();
+        if (centerLyricsDisplay.classList.contains('visible')) {
+            centerLyricsDisplay.classList.remove('visible');
             lyricsToggleButton.textContent = 'Show Lyrics';
+        } else {
+            centerLyricsDisplay.classList.add('visible');
+            centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[currentSongIndex].title;
+            centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
+                albumData.songs[currentSongIndex].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
+            lyricsToggleButton.textContent = 'Hide Lyrics';
         }
     }
 
@@ -112,6 +115,7 @@ function initializePlayer(playerId, albumData) {
             playButton.textContent = 'Play';
             document.querySelector('.players-wrapper').classList.remove('playing');
             document.querySelector('.lyrics-display-center').classList.remove('visible');
+            lyricsToggleButton.textContent = 'Show Lyrics';
         } else {
             // Pause any other playing audio elements
             document.querySelectorAll('audio').forEach(audio => {
@@ -131,12 +135,15 @@ function initializePlayer(playerId, albumData) {
             // Move players to sides and show center lyrics
             document.querySelector('.players-wrapper').classList.add('playing');
             
-            // Update center lyrics
+            // Update and show center lyrics
             const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
             centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[currentSongIndex].title;
             centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
                 albumData.songs[currentSongIndex].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
             centerLyricsDisplay.classList.add('visible');
+            
+            // Update the lyrics toggle button
+            lyricsToggleButton.textContent = 'Hide Lyrics';
         }
         isPlaying = !isPlaying;
     }
@@ -173,6 +180,8 @@ function initializePlayer(playerId, albumData) {
             centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[index].title;
             centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
                 albumData.songs[index].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
+            centerLyricsDisplay.classList.add('visible');
+            lyricsToggleButton.textContent = 'Hide Lyrics';
         }
     }
 
