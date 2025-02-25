@@ -166,9 +166,11 @@ function initializePlayer(playerId, albumData) {
         document.querySelector(`.current-song-title-${playerId}`).textContent = albumData.songs[index].title;
         document.querySelector(`.duration-${playerId}`).textContent = albumData.songs[index].duration;
         
-        // Update active song in list
-        songItems.forEach((item, i) => {
-            item.classList.toggle('active', i === index);
+        // Song list selection
+        songItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                selectSong(index);
+            });
         });
         
         // Reset progress bar
@@ -176,20 +178,17 @@ function initializePlayer(playerId, albumData) {
         currentTimeDisplay.textContent = '0:00';
         
         // Update lyrics
-        updateLyrics(index);
+        const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
+        centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[index].title;
+        centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
+            albumData.songs[index].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
         
-        // If already playing, start the new song
-        if (isPlaying) {
+        // Automatically play the song when selected
+        if (!isPlaying) {
+            togglePlay();
+        } else {
+            // If already playing, just play the new song
             audioElement.play();
-        }
-        // If playing, update the center lyrics
-        if (isPlaying) {
-            const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
-            centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[index].title;
-            centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
-                albumData.songs[index].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
-            centerLyricsDisplay.classList.add('visible');
-            lyricsToggleButton.textContent = 'Hide Lyrics';
         }
     }
 
