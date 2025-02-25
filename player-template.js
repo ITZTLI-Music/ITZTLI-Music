@@ -1,28 +1,28 @@
-export const createPlayerTemplate = (albumData) => `
+export const createPlayerTemplate = (albumData, playerId) => `
     <div class="vanilla-player">
         <div class="player-album-art">
             <img src="${albumData.artwork}" alt="${albumData.title}">
         </div>
         <div class="player-controls">
             <div class="song-info">
-                <h3 class="current-song-title">${albumData.songs[0].title}</h3>
+                <h3 class="current-song-title-${playerId}">${albumData.songs[0].title}</h3>
                 <div class="time-display">
-                    <span class="current-time">0:00</span> / 
-                    <span class="duration">${albumData.songs[0].duration}</span>
+                    <span class="current-time-${playerId}">0:00</span> / 
+                    <span class="duration-${playerId}">${albumData.songs[0].duration}</span>
                 </div>
             </div>
-            <div class="progress-bar">
-                <div class="progress"></div>
+            <div class="progress-bar-${playerId} progress-bar">
+                <div class="progress-${playerId} progress"></div>
             </div>
             <div class="control-buttons">
-                <button class="prev-button">Previous</button>
-                <button class="play-button">Play</button>
-                <button class="next-button">Next</button>
-                <button class="lyrics-toggle-button">Show Lyrics</button>
+                <button class="prev-button-${playerId}">Previous</button>
+                <button class="play-button-${playerId}">Play</button>
+                <button class="next-button-${playerId}">Next</button>
+                <button class="lyrics-toggle-button-${playerId}">Show Lyrics</button>
             </div>
         </div>
-        <div class="song-list">
-            <h3>Songs</h3>
+        <div class="song-list-${playerId} song-list">
+            <h3>${albumData.title}</h3>
             <ul>
                 ${albumData.songs.map((song, index) => `
                     <li data-index="${index}" class="${index === 0 ? 'active' : ''}">
@@ -32,12 +32,12 @@ export const createPlayerTemplate = (albumData) => `
                 `).join('')}
             </ul>
         </div>
-        <audio id="audio-element" src="${albumData.songs[0].src}"></audio>
+        <audio id="audio-element-${playerId}" src="${albumData.songs[0].src}"></audio>
     </div>
-    <div class="lyrics-container">
+    <div class="lyrics-container-${playerId} lyrics-container">
         <div class="lyrics-content">
             <h3>Lyrics</h3>
-            <div class="lyrics-text">${albumData.songs[0].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available'}</div>
+            <div class="lyrics-text-${playerId}">${albumData.songs[0].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available'}</div>
         </div>
     </div>
 `;

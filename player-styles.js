@@ -1,20 +1,25 @@
 export const playerStyles = `
-  .player-container {
+  .players-wrapper {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     gap: 30px;
-    align-items: flex-start;
     flex-wrap: wrap;
+  }
+  
+  .player-container {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .vanilla-player {
     width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid #fff;
     border-radius: 8px;
@@ -50,9 +55,9 @@ export const playerStyles = `
     color: #fff;
   }
   
-  .current-song-title {
+  [class^="current-song-title"] {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1.1em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -64,7 +69,7 @@ export const playerStyles = `
     color: #ccc;
   }
   
-  .progress-bar {
+  [class^="progress-bar"] {
     height: 6px;
     background-color: #333;
     border-radius: 3px;
@@ -73,7 +78,7 @@ export const playerStyles = `
     position: relative;
   }
   
-  .progress {
+  [class^="progress"] {
     height: 100%;
     background-color: #2ebd35;
     border-radius: 3px;
@@ -90,7 +95,8 @@ export const playerStyles = `
   
   .control-buttons button {
     flex: 1;
-    padding: 8px 0;
+    padding: 6px 0;
+    font-size: 0.9em;
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid #444;
     color: #fff;
@@ -103,47 +109,49 @@ export const playerStyles = `
     background-color: rgba(255, 255, 255, 0.2);
   }
   
-  .song-list {
+  [class^="song-list"] {
     border-top: 1px solid #333;
     padding: 15px;
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
   }
   
-  .song-list h3 {
+  [class^="song-list"] h3 {
     color: #fff;
     margin-top: 0;
     margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.2em;
   }
   
-  .song-list ul {
+  [class^="song-list"] ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
   
-  .song-list li {
+  [class^="song-list"] li {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 8px 10px;
     border-bottom: 1px solid #333;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 0.9em;
   }
   
-  .song-list li:hover {
+  [class^="song-list"] li:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
   
-  .song-list li.active {
+  [class^="song-list"] li.active {
     background-color: rgba(46, 189, 53, 0.2);
     border-left: 3px solid #2ebd35;
   }
   
-  .lyrics-container {
+  [class^="lyrics-container"] {
     width: 100%;
-    max-width: 500px;
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid #fff;
     border-radius: 8px;
@@ -155,7 +163,7 @@ export const playerStyles = `
     margin-top: 20px;
   }
   
-  .lyrics-container.visible {
+  [class^="lyrics-container"].visible {
     opacity: 1;
     transform: translateY(0);
     display: block;
@@ -164,7 +172,7 @@ export const playerStyles = `
   .lyrics-content {
     padding: 20px;
     color: #fff;
-    max-height: 350px;
+    max-height: 300px;
     overflow-y: auto;
   }
   
@@ -173,28 +181,31 @@ export const playerStyles = `
     color: #2ebd35;
   }
   
-  .lyrics-text {
+  [class^="lyrics-text"] {
     line-height: 1.6;
     white-space: pre-wrap;
   }
   
   /* Responsive adjustments */
-  @media (max-width: 1100px) {
-    .player-container {
+  @media (max-width: 950px) {
+    .players-wrapper {
       flex-direction: column;
       align-items: center;
     }
     
-    .lyrics-container {
-      margin-top: 20px;
+    .player-container {
+      max-width: 500px;
     }
   }
   
   @media (max-width: 550px) {
-    .vanilla-player,
-    .lyrics-container {
+    .player-container {
       width: 100%;
-      min-width: auto;
+    }
+    
+    .vanilla-player,
+    [class^="lyrics-container"] {
+      width: 100%;
     }
   }
 `;

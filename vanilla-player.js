@@ -1,4 +1,5 @@
 import albumData from './player-config.js';
+import albumDataTwo from './player-config-two.js'; // New import for second album
 import { playerStyles } from './player-styles.js';
 import { createPlayerTemplate } from './player-template.js';
 
@@ -15,28 +16,46 @@ document.addEventListener('DOMContentLoaded', () => {
     styleElement.textContent = playerStyles;
     document.head.appendChild(styleElement);
     
-    // Create player container
-    const playerContainer = document.createElement('div');
-    playerContainer.className = 'player-container';
-    playerContainer.innerHTML = createPlayerTemplate(albumData);
-    audioPlayerRoot.appendChild(playerContainer);
+    // Create wrapper for both players
+    const playersWrapper = document.createElement('div');
+    playersWrapper.className = 'players-wrapper';
+    audioPlayerRoot.appendChild(playersWrapper);
     
-    // Get DOM elements
-    const audioElement = document.getElementById('audio-element');
-    const playButton = document.querySelector('.play-button');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-    const lyricsToggleButton = document.querySelector('.lyrics-toggle-button');
-    const progressBar = document.querySelector('.progress-bar');
-    const progress = document.querySelector('.progress');
-    const currentTimeDisplay = document.querySelector('.current-time');
-    const songItems = document.querySelectorAll('.song-list li');
-    const lyricsContainer = document.querySelector('.lyrics-container');
-    const lyricsText = document.querySelector('.lyrics-text');
+    // Create first player container
+    const playerContainer1 = document.createElement('div');
+    playerContainer1.className = 'player-container';
+    playerContainer1.innerHTML = createPlayerTemplate(albumData, 'player-one');
+    playersWrapper.appendChild(playerContainer1);
+    
+    // Create second player container
+    const playerContainer2 = document.createElement('div');
+    playerContainer2.className = 'player-container';
+    playerContainer2.innerHTML = createPlayerTemplate(albumDataTwo, 'player-two');
+    playersWrapper.appendChild(playerContainer2);
+    
+    // Initialize both players
+    initializePlayer('player-one', albumData);
+    initializePlayer('player-two', albumDataTwo);
+});
+
+// Function to initialize a player with its specific elements and data
+function initializePlayer(playerId, albumData) {
+    // Get DOM elements for this specific player
+    const audioElement = document.getElementById(`audio-element-${playerId}`);
+    const playButton = document.querySelector(`.play-button-${playerId}`);
+    const prevButton = document.querySelector(`.prev-button-${playerId}`);
+    const nextButton = document.querySelector(`.next-button-${playerId}`);
+    const lyricsToggleButton = document.querySelector(`.lyrics-toggle-button-${playerId}`);
+    const progressBar = document.querySelector(`.progress-bar-${playerId}`);
+    const progress = document.querySelector(`.progress-${playerId}`);
+    const currentTimeDisplay = document.querySelector(`.current-time-${playerId}`);
+    const songItems = document.querySelectorAll(`.song-list-${playerId} li`);
+    const lyricsContainer = document.querySelector(`.lyrics-container-${playerId}`);
+    const lyricsText = document.querySelector(`.lyrics-text-${playerId}`);
     
     let currentSongIndex = 0;
     let isPlaying = false;
-    let lyricsVisible = true;
+    let lyricsVisible = false;
 
     // Update lyrics function
     function updateLyrics(index) {
@@ -84,6 +103,16 @@ document.addEventListener('DOMContentLoaded', () => {
             audioElement.pause();
             playButton.textContent = 'Play';
         } else {
+            // Pause any other playing audio elements
+            document.querySelectorAll('audio').forEach(audio => {
+                if (audio !== audioElement && !audio.paused) {
+                    audio.pause();
+                    // Find and update the corresponding play button
+                    const otherPlayerId = audio.id.replace('audio-element-', '');
+                    document.querySelector(`.play-button-${otherPlayerId}`).textContent = 'Play';
+                }
+            });
+            
             audioElement.play().catch(err => {
                 console.error('Error playing audio:', err);
             });
@@ -101,8 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
         audioElement.src = albumData.songs[index].src;
         
         // Update song title and duration
-        document.querySelector('.current-song-title').textContent = albumData.songs[index].title;
-        document.querySelector('.duration').textContent = albumData.songs[index].duration;
+        document.querySelector(`.current-song-title-${playerId}`).textContent = albumData.songs[index].title;
+        document.querySelector(`.duration-${playerId}`).textContent = albumData.songs[index].duration;
         
         // Update active song in list
         songItems.forEach((item, i) => {
@@ -173,14 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize lyrics visibility
-    if (lyricsVisible) {
-        showLyrics();
-    }
-    
     // Initialize lyrics toggle button text
-    lyricsToggleButton.textContent = lyricsVisible ? 'Hide Lyrics' : 'Show Lyrics';
+    lyricsToggleButton.textContent = 'Show Lyrics';
     
     // Update the initial lyrics content
     updateLyrics(currentSongIndex);
-});
+}
