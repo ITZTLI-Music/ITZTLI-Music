@@ -21,19 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
     playersWrapper.className = 'players-wrapper';
     audioPlayerRoot.appendChild(playersWrapper);
     
-    // Add center lyrics display
-    const centerLyricsDisplay = document.createElement('div');
-    centerLyricsDisplay.className = 'lyrics-display-center';
-    centerLyricsDisplay.innerHTML = `
-      <h3>Song Lyrics</h3>
-      <div class="center-lyrics-text"></div>`;
-    audioPlayerRoot.appendChild(centerLyricsDisplay);
-
     // Create first player container
     const playerContainer1 = document.createElement('div');
     playerContainer1.className = 'player-container';
     playerContainer1.innerHTML = createPlayerTemplate(albumData, 'player-one');
     playersWrapper.appendChild(playerContainer1);
+    
+    // Create center lyrics display
+    const centerLyricsDisplay = document.createElement('div');
+    centerLyricsDisplay.className = 'lyrics-display-center';
+    centerLyricsDisplay.innerHTML = `
+      <h3>Song Lyrics</h3>
+      <div class="center-lyrics-text"></div>
+    `;
+    // Insert lyrics display between the players
+    playersWrapper.appendChild(centerLyricsDisplay);
     
     // Create second player container
     const playerContainer2 = document.createElement('div');
@@ -132,6 +134,9 @@ function initializePlayer(playerId, albumData) {
             });
             playButton.textContent = 'Pause';
             
+            // Force reflow to ensure animation works
+            void document.querySelector('.players-wrapper').offsetWidth;
+            
             // Move players to sides and show center lyrics
             document.querySelector('.players-wrapper').classList.add('playing');
             
@@ -140,6 +145,9 @@ function initializePlayer(playerId, albumData) {
             centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[currentSongIndex].title;
             centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
                 albumData.songs[currentSongIndex].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
+            
+            // Force reflow before showing lyrics
+            void centerLyricsDisplay.offsetWidth;
             centerLyricsDisplay.classList.add('visible');
             
             // Update the lyrics toggle button

@@ -7,11 +7,12 @@ export const playerStyles = `
     justify-content: center;
     gap: 30px;
     flex-wrap: nowrap;
-    transition: transform 0.5s ease;
+    position: relative; /* Add this */
+    transition: all 0.5s ease;
   }
 
   .players-wrapper.playing {
-    justify-content: space-between;
+    justify-content: space-between; /* This spreads the players apart */
   }
 
   .player-container {
@@ -24,19 +25,16 @@ export const playerStyles = `
     transition: all 0.5s ease;
   }
 
+  /* Enhance the transform for a more dramatic slide */
   .players-wrapper.playing .player-container:first-child {
-    transform: translateX(-15%);
+    transform: translateX(-20%);
   }
 
   .players-wrapper.playing .player-container:last-child {
-    transform: translateX(15%);
+    transform: translateX(20%);
   }
 
   .lyrics-display-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
     max-width: 450px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -50,6 +48,7 @@ export const playerStyles = `
     z-index: 10;
     max-height: 80vh;
     overflow-y: auto;
+    margin: 0 auto;
   }
 
   .lyrics-display-center.visible {
@@ -233,22 +232,22 @@ export const playerStyles = `
     }
     
     .lyrics-display-center {
-      position: relative;
-      transform: none;
-      top: auto;
-      left: auto;
       margin: 20px auto;
+      order: 3; /* Make sure it appears after both players */
     }
   }
-  
+
   @media (max-width: 550px) {
     .player-container {
       width: 100%;
     }
     
-    .vanilla-player,
-    [class^="lyrics-container"] {
+    .vanilla-player {
       width: 100%;
+    }
+    
+    .lyrics-display-center {
+      max-width: 100%;
     }
   }
 `;
