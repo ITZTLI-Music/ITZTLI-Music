@@ -5,13 +5,15 @@ export const playerStyles = `
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 15px; /* Reduced gap to bring players closer together */
+    gap: 5px; /* Reduced from 15px to 5px for much closer spacing */
     flex-wrap: nowrap;
     position: relative;
     transition: all 0.5s ease;
   }
   .players-wrapper.playing {
-    justify-content: space-between; /* This spreads the players apart */
+    justify-content: space-between; /* Changed from space-between */
+    align-items: flex-start;
+    position: relative;
   }
 
   .player-container {
@@ -28,16 +30,20 @@ export const playerStyles = `
 
   /* Enhance the transform for a more dramatic slide */
   .players-wrapper.playing .player-container:first-child {
-    transform: translateX(-20%);
+    transform: translateX(-10%); /* Reduced from -20% for more even spacing */
   }
 
   .players-wrapper.playing .player-container:last-child {
-    transform: translateX(20%);
+    transform: translateX(10%); /* Reduced from 20% for more even spacing */
   }
 
   .lyrics-display-center {
+    position: absolute; /* Set to absolute */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for center alignment */
+    top: 0; /* Align at the top */    
     width: 100%;
-    max-width: 500px; /* Match the player size */
+    max-width: 500px;
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid #fff;
     border-radius: 8px;
@@ -47,12 +53,11 @@ export const playerStyles = `
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s;
     z-index: 10;
-    max-height: none; /* Remove max-height constraint */
-    height: auto; /* Let it adjust based on content */
-    overflow-y: auto;
+    height: 600px; /* Set a fixed height to match player height */
+    overflow-y: auto; /* Add scrollbar for overflow content */
     margin: 0 auto;
-    flex-shrink: 0; /* Prevent shrinking */
-    flex-grow: 0; /* Prevent growing */
+    flex-shrink: 0;
+    flex-grow: 0;
   }
 
   .lyrics-display-center.visible {

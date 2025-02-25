@@ -80,12 +80,15 @@ function initializePlayer(playerId, albumData) {
     // Toggle lyrics visibility
     function toggleLyrics() {
         const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
+        const playersWrapper = document.querySelector('.players-wrapper');
         
         if (centerLyricsDisplay.classList.contains('visible')) {
             centerLyricsDisplay.classList.remove('visible');
+            playersWrapper.classList.remove('playing'); // Add this line to restore positions
             lyricsToggleButton.textContent = 'Show Lyrics';
         } else {
             centerLyricsDisplay.classList.add('visible');
+            playersWrapper.classList.add('playing'); // Add this line to apply the transition
             centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[currentSongIndex].title;
             centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
                 albumData.songs[currentSongIndex].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
