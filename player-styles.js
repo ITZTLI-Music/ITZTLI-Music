@@ -6,7 +6,7 @@ export const playerStyles = `
     display: flex;
     justify-content: center;
     gap: 30px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Change from 'wrap' to 'nowrap' */
   }
   
   .player-container {
@@ -189,12 +189,13 @@ export const playerStyles = `
   /* Responsive adjustments */
   @media (max-width: 950px) {
     .players-wrapper {
-      flex-direction: column;
-      align-items: center;
+     flex-direction: column;
+     align-items: center;
+     flex-wrap: wrap; /* Add this line */
     }
     
     .player-container {
-      max-width: 500px;
+        max-width: 500px;
     }
   }
   
