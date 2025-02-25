@@ -6,9 +6,14 @@ export const playerStyles = `
     display: flex;
     justify-content: center;
     gap: 30px;
-    flex-wrap: nowrap; /* Change from 'wrap' to 'nowrap' */
+    flex-wrap: nowrap;
+    transition: transform 0.5s ease;
   }
-  
+
+  .players-wrapper.playing {
+    justify-content: space-between;
+  }
+
   .player-container {
     width: 100%;
     max-width: 450px;
@@ -16,6 +21,53 @@ export const playerStyles = `
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: all 0.5s ease;
+  }
+
+  .players-wrapper.playing .player-container:first-child {
+    transform: translateX(-15%);
+  }
+
+  .players-wrapper.playing .player-container:last-child {
+    transform: translateX(15%);
+  }
+
+  .lyrics-display-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 450px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #fff;
+    border-radius: 8px;
+    padding: 20px;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+    z-index: 10;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .lyrics-display-center.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lyrics-display-center h3 {
+    color: #2ebd35;
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.3em;
+  }
+
+  .lyrics-display-center .lyrics-text {
+    line-height: 1.6;
+    white-space: pre-wrap;
+    margin-top: 15px;
   }
   
   .vanilla-player {
@@ -189,13 +241,22 @@ export const playerStyles = `
   /* Responsive adjustments */
   @media (max-width: 950px) {
     .players-wrapper {
-     flex-direction: column;
-     align-items: center;
-     flex-wrap: wrap; /* Add this line */
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: wrap;
     }
     
-    .player-container {
-        max-width: 500px;
+    .players-wrapper.playing .player-container:first-child,
+    .players-wrapper.playing .player-container:last-child {
+      transform: translateX(0);
+    }
+    
+    .lyrics-display-center {
+      position: relative;
+      transform: none;
+      top: auto;
+      left: auto;
+      margin: 20px auto;
     }
   }
   

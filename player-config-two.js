@@ -1,5 +1,5 @@
 const albumDataTwo = {
-    title: "YOUR NEW ALBUM TITLE",
+    title: "SATYR & SAVIOR",
     artwork: "./assets/images/new-album-art.png",
     songs: [
         { 

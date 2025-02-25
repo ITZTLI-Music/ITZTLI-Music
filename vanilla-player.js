@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     playersWrapper.className = 'players-wrapper';
     audioPlayerRoot.appendChild(playersWrapper);
     
+    // Add center lyrics display
+    const centerLyricsDisplay = document.createElement('div');
+    centerLyricsDisplay.className = 'lyrics-display-center';
+    centerLyricsDisplay.innerHTML = `
+      <h3>Song Lyrics</h3>
+      <div class="center-lyrics-text"></div>`;
+    audioPlayerRoot.appendChild(centerLyricsDisplay);
+
     // Create first player container
     const playerContainer1 = document.createElement('div');
     playerContainer1.className = 'player-container';
@@ -102,6 +110,8 @@ function initializePlayer(playerId, albumData) {
         if (isPlaying) {
             audioElement.pause();
             playButton.textContent = 'Play';
+            document.querySelector('.players-wrapper').classList.remove('playing');
+            document.querySelector('.lyrics-display-center').classList.remove('visible');
         } else {
             // Pause any other playing audio elements
             document.querySelectorAll('audio').forEach(audio => {
@@ -117,11 +127,19 @@ function initializePlayer(playerId, albumData) {
                 console.error('Error playing audio:', err);
             });
             playButton.textContent = 'Pause';
-            updateLyrics(currentSongIndex);
+            
+            // Move players to sides and show center lyrics
+            document.querySelector('.players-wrapper').classList.add('playing');
+            
+            // Update center lyrics
+            const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
+            centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[currentSongIndex].title;
+            centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
+                albumData.songs[currentSongIndex].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
+            centerLyricsDisplay.classList.add('visible');
         }
         isPlaying = !isPlaying;
     }
-
     // Song selection function
     function selectSong(index) {
         currentSongIndex = index;
@@ -148,6 +166,13 @@ function initializePlayer(playerId, albumData) {
         // If already playing, start the new song
         if (isPlaying) {
             audioElement.play();
+        }
+        // If playing, update the center lyrics
+        if (isPlaying) {
+            const centerLyricsDisplay = document.querySelector('.lyrics-display-center');
+            centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[index].title;
+            centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
+                albumData.songs[index].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
         }
     }
 
