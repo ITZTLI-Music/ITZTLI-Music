@@ -5,24 +5,25 @@ export const playerStyles = `
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 15px; /* Reduced gap to bring players closer together */
     flex-wrap: nowrap;
-    position: relative; /* Add this */
+    position: relative;
     transition: all 0.5s ease;
   }
-
   .players-wrapper.playing {
     justify-content: space-between; /* This spreads the players apart */
   }
 
   .player-container {
     width: 100%;
-    max-width: 450px;
+    max-width: 500px; /* Increased from 450px to match original size */
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: all 0.5s ease;
+    flex-shrink: 0; /* Prevent shrinking */
+    flex-grow: 0; /* Prevent growing */
   }
 
   /* Enhance the transform for a more dramatic slide */
@@ -36,7 +37,7 @@ export const playerStyles = `
 
   .lyrics-display-center {
     width: 100%;
-    max-width: 450px;
+    max-width: 500px; /* Match the player size */
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid #fff;
     border-radius: 8px;
@@ -46,9 +47,12 @@ export const playerStyles = `
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s;
     z-index: 10;
-    max-height: 80vh;
+    max-height: none; /* Remove max-height constraint */
+    height: auto; /* Let it adjust based on content */
     overflow-y: auto;
     margin: 0 auto;
+    flex-shrink: 0; /* Prevent shrinking */
+    flex-grow: 0; /* Prevent growing */
   }
 
   .lyrics-display-center.visible {
@@ -61,6 +65,9 @@ export const playerStyles = `
     margin-top: 0;
     text-align: center;
     font-size: 1.3em;
+    white-space: nowrap; /* Prevent wrapping of title */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .lyrics-display-center .lyrics-text {
