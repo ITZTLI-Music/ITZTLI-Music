@@ -30,11 +30,11 @@ export const playerStyles = `
 
   /* Enhance the transform for a more dramatic slide */
   .players-wrapper.playing .player-container:first-child {
-    transform: translateX(-50%); /* Reduced from -20% for more even spacing */
+    transform: translateX(-55%); /* Reduced from -20% for more even spacing */
   }
 
   .players-wrapper.playing .player-container:last-child {
-    transform: translateX(50%); /* Reduced from 20% for more even spacing */
+    transform: translateX(55%); /* Reduced from 20% for more even spacing */
   }
 
   .lyrics-display-center {
