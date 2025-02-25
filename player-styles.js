@@ -5,7 +5,7 @@ export const playerStyles = `
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 5px; /* Reduced from 15px to 5px for much closer spacing */
+    gap: 10px; /* Reduced from 15px to 5px for much closer spacing */
     flex-wrap: nowrap;
     position: relative;
     transition: all 0.5s ease;
@@ -30,11 +30,11 @@ export const playerStyles = `
 
   /* Enhance the transform for a more dramatic slide */
   .players-wrapper.playing .player-container:first-child {
-    transform: translateX(-10%); /* Reduced from -20% for more even spacing */
+    transform: translateX(-20%); /* Reduced from -20% for more even spacing */
   }
 
   .players-wrapper.playing .player-container:last-child {
-    transform: translateX(10%); /* Reduced from 20% for more even spacing */
+    transform: translateX(20%); /* Reduced from 20% for more even spacing */
   }
 
   .lyrics-display-center {
