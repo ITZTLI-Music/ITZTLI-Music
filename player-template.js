@@ -18,7 +18,7 @@ export const createPlayerTemplate = (albumData) => `
                 <button class="prev-button">Previous</button>
                 <button class="play-button">Play</button>
                 <button class="next-button">Next</button>
-                <button class="lyrics-toggle-button">Lyrics</button>
+                <button class="lyrics-toggle-button">Show Lyrics</button>
             </div>
         </div>
         <div class="song-list">
@@ -37,7 +37,7 @@ export const createPlayerTemplate = (albumData) => `
     <div class="lyrics-container">
         <div class="lyrics-content">
             <h3>Lyrics</h3>
-            <div class="lyrics-text">${albumData.songs[0].lyrics || 'Lyrics not available'}</div>
+            <div class="lyrics-text">${albumData.songs[0].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available'}</div>
         </div>
     </div>
 `;

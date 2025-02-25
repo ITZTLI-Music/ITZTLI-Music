@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update lyrics function
     function updateLyrics(index) {
         const lyrics = albumData.songs[index].lyrics || "Lyrics not available";
-        lyricsText.textContent = lyrics;
+        lyricsText.innerHTML = lyrics.replace(/\n/g, '<br>'); // Handle line breaks properly
         
         if (lyricsVisible) {
             showLyrics();
@@ -54,23 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (lyricsVisible) {
             showLyrics();
-            lyricsToggleButton.classList.add('active');
+            lyricsToggleButton.textContent = 'Hide Lyrics';
         } else {
             hideLyrics();
-            lyricsToggleButton.classList.remove('active');
+            lyricsToggleButton.textContent = 'Show Lyrics';
         }
     }
 
     // Show lyrics
     function showLyrics() {
-        playerContainer.classList.add('show-lyrics');
         lyricsContainer.classList.add('visible');
     }
 
     // Hide lyrics
     function hideLyrics() {
         lyricsContainer.classList.remove('visible');
-        playerContainer.classList.remove('show-lyrics');
+    }
+
+    // Format time function for current time display
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        seconds = Math.floor(seconds % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
     // Play/Pause function
@@ -104,9 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.toggle('active', i === index);
         });
         
-        // Update lyrics if playing
+        // Reset progress bar
+        progress.style.width = '0%';
+        currentTimeDisplay.textContent = '0:00';
+        
+        // Update lyrics
+        updateLyrics(index);
+        
+        // If already playing, start the new song
         if (isPlaying) {
-            updateLyrics(index);
+            audioElement.play();
         }
     }
 
@@ -114,13 +126,38 @@ document.addEventListener('DOMContentLoaded', () => {
     playButton.addEventListener('click', togglePlay);
     
     prevButton.addEventListener('click', () => {
-        const newIndex = Math.max(0, currentSongIndex - 1);
+        const newIndex = (currentSongIndex > 0) ? currentSongIndex - 1 : albumData.songs.length - 1;
         selectSong(newIndex);
     });
     
     nextButton.addEventListener('click', () => {
-        const newIndex = Math.min(albumData.songs.length - 1, currentSongIndex + 1);
+        const newIndex = (currentSongIndex < albumData.songs.length - 1) ? currentSongIndex + 1 : 0;
         selectSong(newIndex);
+    });
+    
+    // Update progress bar during playback
+    audioElement.addEventListener('timeupdate', () => {
+        if (audioElement.duration) {
+            const percentage = (audioElement.currentTime / audioElement.duration) * 100;
+            progress.style.width = `${percentage}%`;
+            currentTimeDisplay.textContent = formatTime(audioElement.currentTime);
+        }
+    });
+    
+    // Enable seeking by clicking on progress bar
+    progressBar.addEventListener('click', (e) => {
+        const rect = progressBar.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        audioElement.currentTime = pos * audioElement.duration;
+    });
+    
+    // Handle song end
+    audioElement.addEventListener('ended', () => {
+        const newIndex = (currentSongIndex < albumData.songs.length - 1) ? currentSongIndex + 1 : 0;
+        selectSong(newIndex);
+        if (isPlaying) {
+            audioElement.play();
+        }
     });
     
     // Lyrics toggle
@@ -136,6 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize lyrics toggle button
-    lyricsToggleButton.classList.add('active');
+    // Initialize lyrics visibility
+    if (lyricsVisible) {
+        showLyrics();
+    }
+    
+    // Initialize lyrics toggle button text
+    lyricsToggleButton.textContent = lyricsVisible ? 'Hide Lyrics' : 'Show Lyrics';
+    
+    // Update the initial lyrics content
+    updateLyrics(currentSongIndex);
 });

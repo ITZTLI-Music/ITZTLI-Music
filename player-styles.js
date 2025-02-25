@@ -7,11 +7,11 @@ export const playerStyles = `
     justify-content: center;
     gap: 30px;
     align-items: flex-start;
+    flex-wrap: wrap;
   }
   
   .vanilla-player {
-    width: 500px;
-    min-width: 500px;
+    width: 100%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -37,12 +37,83 @@ export const playerStyles = `
     object-fit: cover;
   }
   
-  .song-list {
-    flex: 1;
+  .player-controls {
+    padding: 15px;
     border-top: 1px solid #333;
-    padding: 20px;
+  }
+  
+  .song-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .current-song-title {
+    margin: 0;
+    font-size: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+  }
+  
+  .time-display {
+    font-size: 0.9em;
+    color: #ccc;
+  }
+  
+  .progress-bar {
+    height: 6px;
+    background-color: #333;
+    border-radius: 3px;
+    margin: 10px 0;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #2ebd35;
+    border-radius: 3px;
+    width: 0;
+    transition: width 0.1s linear;
+  }
+  
+  .control-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .control-buttons button {
+    flex: 1;
+    padding: 8px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .control-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .song-list {
+    border-top: 1px solid #333;
+    padding: 15px;
+    max-height: 300px;
     overflow-y: auto;
-    max-height: 350px;
+  }
+  
+  .song-list h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
   
   .song-list ul {
@@ -66,35 +137,64 @@ export const playerStyles = `
   }
   
   .song-list li.active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(46, 189, 53, 0.2);
+    border-left: 3px solid #2ebd35;
   }
   
   .lyrics-container {
-    width: 500px;
-    min-width: 500px;
+    width: 100%;
     max-width: 500px;
     background-color: rgba(0, 0, 0, 0.7);
     border: 1px solid #fff;
     border-radius: 8px;
     overflow: hidden;
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
     display: none;
+    margin-top: 20px;
   }
   
   .lyrics-container.visible {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
     display: block;
   }
   
   .lyrics-content {
     padding: 20px;
     color: #fff;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
+    max-height: 350px;
     overflow-y: auto;
+  }
+  
+  .lyrics-content h3 {
+    margin-top: 0;
+    color: #2ebd35;
+  }
+  
+  .lyrics-text {
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1100px) {
+    .player-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .lyrics-container {
+      margin-top: 20px;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .vanilla-player,
+    .lyrics-container {
+      width: 100%;
+      min-width: auto;
+    }
   }
 `;
