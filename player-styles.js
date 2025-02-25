@@ -30,11 +30,11 @@ export const playerStyles = `
 
   /* Enhance the transform for a more dramatic slide */
   .players-wrapper.playing .player-container:first-child {
-    transform: translateX(-40%); /* Reduced from -20% for more even spacing */
+    transform: translateX(-50%); /* Reduced from -20% for more even spacing */
   }
 
   .players-wrapper.playing .player-container:last-child {
-    transform: translateX(40%); /* Reduced from 20% for more even spacing */
+    transform: translateX(50%); /* Reduced from 20% for more even spacing */
   }
 
   .lyrics-display-center {
@@ -53,7 +53,7 @@ export const playerStyles = `
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s;
     z-index: 10;
-    height: 550px; /* Set a fixed height to match player height */
+    height: 610px; /* Set a fixed height to match player height */
     overflow-y: auto; /* Add scrollbar for overflow content */
     margin: 0 auto;
     flex-shrink: 0;
