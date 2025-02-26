@@ -51,9 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to initialize a player with its specific elements and data
 function initializePlayer(playerId, albumData) {
     console.log(`Initializing player: ${playerId}`);
-    console.log(`Audio element found: ${audioElement ? 'Yes' : 'No'}`);
-    console.log(`Play button found: ${playButton ? 'Yes' : 'No'}`);
-    console.log(`Song items count: ${songItems.length}`);
+    
     // Get DOM elements for this specific player
     const audioElement = document.getElementById(`audio-element-${playerId}`);
     const playButton = document.querySelector(`.play-button-${playerId}`);
@@ -64,6 +62,11 @@ function initializePlayer(playerId, albumData) {
     const progress = document.querySelector(`.progress-${playerId}`);
     const currentTimeDisplay = document.querySelector(`.current-time-${playerId}`);
     const songItems = document.querySelectorAll(`.song-list-${playerId} li`);
+    
+    // Debug logs to verify elements are found
+    console.log(`Audio element found: ${audioElement ? 'Yes' : 'No'}`);
+    console.log(`Play button found: ${playButton ? 'Yes' : 'No'}`);
+    console.log(`Song items count: ${songItems.length}`);
     
     let currentSongIndex = 0;
     let isPlaying = false;
@@ -116,8 +119,9 @@ function initializePlayer(playerId, albumData) {
             audioElement.play().catch(err => {
                 console.error(`Error playing audio for ${playerId}:`, err);
                 console.log(`Audio source being played: ${audioElement.src}`);
-                alert(`Error playing audio: ${err.message}`); // This will show the specific error
+                console.log(`Audio element ready state: ${audioElement.readyState}`);
             });
+            
             playButton.textContent = 'Pause';
             
             // Force reflow to ensure animation works
@@ -144,10 +148,12 @@ function initializePlayer(playerId, albumData) {
 
     // Song selection function
     function selectSong(index) {
+        console.log(`Selecting song ${index} in ${playerId}`);
         currentSongIndex = index;
         
         // Update audio source
         audioElement.src = albumData.songs[index].src;
+        console.log(`Set audio source to: ${audioElement.src}`);
         
         // Update song title and duration
         document.querySelector(`.current-song-title-${playerId}`).textContent = albumData.songs[index].title;
@@ -173,7 +179,10 @@ function initializePlayer(playerId, albumData) {
             togglePlay();
         } else {
             // If already playing, just play the new song
-            audioElement.play();
+            audioElement.play().catch(err => {
+                console.error(`Error playing audio for ${playerId} after selection:`, err);
+                console.log(`Audio source being played: ${audioElement.src}`);
+            });
         }
     }
 
@@ -210,20 +219,15 @@ function initializePlayer(playerId, albumData) {
     audioElement.addEventListener('ended', () => {
         const newIndex = (currentSongIndex < albumData.songs.length - 1) ? currentSongIndex + 1 : 0;
         selectSong(newIndex);
-        if (isPlaying) {
-            audioElement.play();
-        }
     });
     
     // Lyrics toggle
     lyricsToggleButton.addEventListener('click', toggleLyrics);
     
-    // Replace the song list selection code with this more robust version
+    // Song list selection with debugging
     console.log(`Setting up song item listeners for ${playerId} - ${songItems.length} items`);
     songItems.forEach((item, index) => {
-        console.log(`Adding listener to song ${index}`);
-        item.addEventListener('click', (event) => {
-            event.preventDefault();
+        item.addEventListener('click', () => {
             console.log(`Song ${index} clicked in ${playerId}`);
             selectSong(index);
         });
