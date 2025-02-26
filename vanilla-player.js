@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to initialize a player with its specific elements and data
 function initializePlayer(playerId, albumData) {
+    console.log(`Initializing player: ${playerId}`);
+    console.log(`Audio element found: ${audioElement ? 'Yes' : 'No'}`);
+    console.log(`Play button found: ${playButton ? 'Yes' : 'No'}`);
+    console.log(`Song items count: ${songItems.length}`);
     // Get DOM elements for this specific player
     const audioElement = document.getElementById(`audio-element-${playerId}`);
     const playButton = document.querySelector(`.play-button-${playerId}`);
@@ -110,7 +114,9 @@ function initializePlayer(playerId, albumData) {
             });
             
             audioElement.play().catch(err => {
-                console.error('Error playing audio:', err);
+                console.error(`Error playing audio for ${playerId}:`, err);
+                console.log(`Audio source being played: ${audioElement.src}`);
+                alert(`Error playing audio: ${err.message}`); // This will show the specific error
             });
             playButton.textContent = 'Pause';
             
@@ -212,9 +218,13 @@ function initializePlayer(playerId, albumData) {
     // Lyrics toggle
     lyricsToggleButton.addEventListener('click', toggleLyrics);
     
-    // Song list selection
+    // Replace the song list selection code with this more robust version
+    console.log(`Setting up song item listeners for ${playerId} - ${songItems.length} items`);
     songItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
+        console.log(`Adding listener to song ${index}`);
+        item.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log(`Song ${index} clicked in ${playerId}`);
             selectSong(index);
         });
     });
