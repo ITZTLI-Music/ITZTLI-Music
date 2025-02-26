@@ -60,22 +60,9 @@ function initializePlayer(playerId, albumData) {
     const progress = document.querySelector(`.progress-${playerId}`);
     const currentTimeDisplay = document.querySelector(`.current-time-${playerId}`);
     const songItems = document.querySelectorAll(`.song-list-${playerId} li`);
-    const lyricsContainer = document.querySelector(`.lyrics-container-${playerId}`);
-    const lyricsText = document.querySelector(`.lyrics-text-${playerId}`);
     
     let currentSongIndex = 0;
     let isPlaying = false;
-    let lyricsVisible = false;
-
-    // Update lyrics function
-    function updateLyrics(index) {
-        const lyrics = albumData.songs[index].lyrics || "Lyrics not available";
-        lyricsText.innerHTML = lyrics.replace(/\n/g, '<br>'); // Handle line breaks properly
-        
-        if (lyricsVisible) {
-            showLyrics();
-        }
-    }
 
     // Toggle lyrics visibility
     function toggleLyrics() {
@@ -84,26 +71,16 @@ function initializePlayer(playerId, albumData) {
         
         if (centerLyricsDisplay.classList.contains('visible')) {
             centerLyricsDisplay.classList.remove('visible');
-            playersWrapper.classList.remove('playing'); // Add this line to restore positions
+            playersWrapper.classList.remove('playing');
             lyricsToggleButton.textContent = 'Show Lyrics';
         } else {
             centerLyricsDisplay.classList.add('visible');
-            playersWrapper.classList.add('playing'); // Add this line to apply the transition
+            playersWrapper.classList.add('playing');
             centerLyricsDisplay.querySelector('h3').textContent = albumData.songs[currentSongIndex].title;
             centerLyricsDisplay.querySelector('.center-lyrics-text').innerHTML = 
                 albumData.songs[currentSongIndex].lyrics?.replace(/\n/g, '<br>') || 'Lyrics not available';
             lyricsToggleButton.textContent = 'Hide Lyrics';
         }
-    }
-
-    // Show lyrics
-    function showLyrics() {
-        lyricsContainer.classList.add('visible');
-    }
-
-    // Hide lyrics
-    function hideLyrics() {
-        lyricsContainer.classList.remove('visible');
     }
 
     // Format time function for current time display
@@ -158,6 +135,7 @@ function initializePlayer(playerId, albumData) {
         }
         isPlaying = !isPlaying;
     }
+
     // Song selection function
     function selectSong(index) {
         currentSongIndex = index;
@@ -169,11 +147,9 @@ function initializePlayer(playerId, albumData) {
         document.querySelector(`.current-song-title-${playerId}`).textContent = albumData.songs[index].title;
         document.querySelector(`.duration-${playerId}`).textContent = albumData.songs[index].duration;
         
-        // Song list selection
-        songItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                selectSong(index);
-            });
+        // Update active song in list
+        songItems.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
         });
         
         // Reset progress bar
@@ -240,15 +216,9 @@ function initializePlayer(playerId, albumData) {
     songItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             selectSong(index);
-            if (!isPlaying) {
-                togglePlay();
-            }
         });
     });
 
     // Initialize lyrics toggle button text
     lyricsToggleButton.textContent = 'Show Lyrics';
-    
-    // Update the initial lyrics content
-    updateLyrics(currentSongIndex);
 }
