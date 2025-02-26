@@ -53,7 +53,7 @@ export const playerStyles = `
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s;
     z-index: 10;
-    height: 840px; /* Set a fixed height to match player height */
+    height: 845px; /* Set a fixed height to match player height */
     overflow-y: auto; /* Add scrollbar for overflow content */
     margin: 0 auto;
     flex-shrink: 0;
