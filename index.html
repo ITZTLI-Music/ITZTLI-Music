@@ -12,8 +12,9 @@
 
     <!-- Video Background -->
     <div class="video-container">
-        <video autoplay muted loop id="bg-video">
+        <video autoplay muted loop playsinline id="bg-video">
             <source src="./assets/your-ai-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
     </div>
 
@@ -81,19 +82,52 @@
 
     <!-- Add this right before the closing </body> tag in index.html -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const video = document.getElementById('bg-video');
-        if (video) {
-            video.load();
-            // Log to console to help with debugging
-            console.log('Video element found and loading attempted');
-            video.addEventListener('error', function(e) {
-                console.error('Error with video:', e);
-            });
-        } else {
-            console.error('Video element not found');
-        }
-    });
-    </script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('bg-video');
+            
+            if (video) {
+                console.log('Video element found:', video);
+                console.log('Video source:', video.querySelector('source').src);
+                
+                // Try to force load the video
+                video.load();
+                
+                // Check if video can play
+                video.addEventListener('canplay', function() {
+                    console.log('Video can play!');
+                });
+                
+                // Check for errors
+                video.addEventListener('error', function(e) {
+                    console.error('Video error:', e);
+                    console.error('Video error code:', video.error ? video.error.code : 'No error code');
+                    console.error('Video error message:', video.error ? video.error.message : 'No error message');
+                });
+                
+                // Source element error
+                const source = video.querySelector('source');
+                source.addEventListener('error', function(e) {
+                    console.error('Source error:', e);
+                    console.error('Source src:', source.src);
+                });
+                
+                // Try to play video
+                try {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('Video playback started successfully');
+                        }).catch(error => {
+                            console.error('Video playback was prevented:', error);
+                        });
+                    }
+                } catch(e) {
+                    console.error('Error attempting to play video:', e);
+                }
+            } else {
+                console.error('Video element not found');
+            }
+        });
+        </script>
 </body>
 </html>
