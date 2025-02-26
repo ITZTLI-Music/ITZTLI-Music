@@ -11,10 +11,11 @@
 <body>
 
     <!-- Video Background -->
-    <div class="video-container">
-        <video autoplay muted loop playsinline id="bg-video">
+    <div class="video-container" id="video-container">
+        <video autoplay muted loop playsinline id="bg-video" 
+            style="border: 1px solid red; visibility: visible;">
             <source src="./assets/your-ai-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            Your browser does not support video tags.
         </video>
     </div>
 
@@ -83,47 +84,57 @@
     <!-- Add this right before the closing </body> tag in index.html -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('bg-video');
+            console.log('DOM fully loaded');
             
-            if (video) {
-                console.log('Video element found:', video);
-                console.log('Video source:', video.querySelector('source').src);
+            // Debug video element
+            const videoElement = document.getElementById('bg-video');
+            const videoContainer = document.getElementById('video-container');
+            
+            console.log('Video container found:', videoContainer);
+            console.log('Video container dimensions:', 
+                videoContainer ? 
+                `Width: ${videoContainer.offsetWidth}, Height: ${videoContainer.offsetHeight}` : 
+                'Unknown');
+            
+            if (videoElement) {
+                console.log('Video element found:', videoElement);
+                console.log('Video dimensions:', 
+                    `Width: ${videoElement.offsetWidth}, Height: ${videoElement.offsetHeight}`);
+                console.log('Video source:', videoElement.querySelector('source').src);
+                console.log('Video ready state:', videoElement.readyState);
+                console.log('Video paused state:', videoElement.paused);
                 
-                // Try to force load the video
-                video.load();
+                // Check video styling
+                const videoStyle = window.getComputedStyle(videoElement);
+                console.log('Video CSS display:', videoStyle.display);
+                console.log('Video CSS visibility:', videoStyle.visibility);
+                console.log('Video CSS z-index:', videoStyle.zIndex);
+                console.log('Video CSS position:', videoStyle.position);
                 
-                // Check if video can play
-                video.addEventListener('canplay', function() {
-                    console.log('Video can play!');
-                });
+                // Force video to play
+                videoElement.load();
                 
-                // Check for errors
-                video.addEventListener('error', function(e) {
-                    console.error('Video error:', e);
-                    console.error('Video error code:', video.error ? video.error.code : 'No error code');
-                    console.error('Video error message:', video.error ? video.error.message : 'No error message');
-                });
-                
-                // Source element error
-                const source = video.querySelector('source');
-                source.addEventListener('error', function(e) {
-                    console.error('Source error:', e);
-                    console.error('Source src:', source.src);
-                });
-                
-                // Try to play video
-                try {
-                    const playPromise = video.play();
+                setTimeout(() => {
+                    console.log('Attempting to play video after 1 second delay');
+                    const playPromise = videoElement.play();
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
-                            console.log('Video playback started successfully');
-                        }).catch(error => {
-                            console.error('Video playback was prevented:', error);
+                            console.log('Video started playing!');
+                        }).catch(e => {
+                            console.error('Video play failed:', e);
                         });
                     }
-                } catch(e) {
-                    console.error('Error attempting to play video:', e);
-                }
+                    
+                    // Final check after 2 seconds
+                    setTimeout(() => {
+                        console.log('Final video state check:');
+                        console.log('- Paused:', videoElement.paused);
+                        console.log('- Current time:', videoElement.currentTime);
+                        console.log('- Duration:', videoElement.duration);
+                        console.log('- Ready state:', videoElement.readyState);
+                        console.log('- Network state:', videoElement.networkState);
+                    }, 2000);
+                }, 1000);
             } else {
                 console.error('Video element not found');
             }
