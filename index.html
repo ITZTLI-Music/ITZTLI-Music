@@ -79,5 +79,21 @@
         </div>
     </footer>
 
+    <!-- Add this right before the closing </body> tag in index.html -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('bg-video');
+        if (video) {
+            video.load();
+            // Log to console to help with debugging
+            console.log('Video element found and loading attempted');
+            video.addEventListener('error', function(e) {
+                console.error('Error with video:', e);
+            });
+        } else {
+            console.error('Video element not found');
+        }
+    });
+    </script>
 </body>
 </html>
