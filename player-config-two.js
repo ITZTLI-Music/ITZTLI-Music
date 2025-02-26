@@ -469,7 +469,7 @@ one step closer to closin oblivion gates,`
         },
         { 
             title: "REPLACEMENT", 
-            src: "./assets/audio/new-album/EPLACEMENT.mp3", 
+            src: "./assets/audio/new-album/REPLACEMENT.mp3", 
             duration: "3:34",
             lyrics: `the visage a pure, refracted obsidian mirror,
 the robots are here, two outcomes appeared,
@@ -762,7 +762,7 @@ the clocks tickin, the plot thickens, enter age of the chrome.`
         },
         { 
             title: "MECHANISM & METHODOLOGY", 
-            src: "./assets/audio/new-album/song2.mp3", 
+            src: "./assets/audio/new-album/MECHANISM & METHODOLOGY.mp3", 
             duration: "2:39",
             lyrics: `i got the compute necessary and output to boot,
 lieutenant armstrong with the poetry and nothin to lose,
