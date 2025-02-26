@@ -622,14 +622,6 @@ if not, guess nothin matters, rather hunt and gather anyway,`
             title: "MISDIRECTION", 
             src: "./assets/audio/new-album/MISDIRECTION.mp3", 
             duration: "3:49",
-            lyrics: `Lyrics for song 2...
-            
-            More lyrics...`
-        },
-        { 
-            title: "Song 11", 
-            src: "./assets/audio/new-album/song2.mp3", 
-            duration: "4:12",
             lyrics: `Rogue magician persistin in the prism,
 The carousel driven roulette wheel spinnin,
 neverendin continuum,
